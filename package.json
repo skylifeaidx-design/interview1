@@ -1,0 +1,15 @@
+{
+  "name": "cms-counselor-interview-site",
+  "version": "2026.7.7",
+  "private": true,
+  "scripts": {
+    "dev": "vercel dev",
+    "deploy": "vercel --prod"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "devDependencies": {
+    "vercel": "latest"
+  }
+}
