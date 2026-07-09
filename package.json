@@ -3,6 +3,8 @@
   "version": "2026.7.7",
   "private": true,
   "scripts": {
+    "build": "node -e \"const fs=require('fs'); if(!fs.existsSync('public/index.html')) throw new Error('public/index.html not found'); console.log('Static site build check OK');\"",
+    "vercel-build": "npm run build",
     "dev": "vercel dev",
     "deploy": "vercel --prod"
   },
