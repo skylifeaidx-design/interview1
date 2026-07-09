@@ -1,9 +1,4 @@
 {
   "buildCommand": "npm run build",
-  "outputDirectory": "public",
-  "functions": {
-    "api/feedback.js": {
-      "runtime": "nodejs20.x"
-    }
-  }
+  "outputDirectory": "public"
 }
