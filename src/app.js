@@ -57,7 +57,7 @@
  function updateSelect(selector,values,value,placeholder){const select=$(selector);select.innerHTML=`<option value="">${esc(placeholder)}</option>`+values.map(v=>`<option value="${esc(v)}">${esc(v)}</option>`).join('');select.value=value;}
  function renderNav(){
   $('#category-nav').innerHTML=['전체 기능',...categoryOrder].map(name=>{
-   const major=name==='전체 기능'?'':name,active=major===state.major&&state.view==='all',count=features.filter(f=>!major||f.major===major).length;
+   const major=name==='전체 기능'?'':name,active=!window.GuideQnA?.isOpen()&&major===state.major&&state.view==='all',count=features.filter(f=>!major||f.major===major).length;
    const middle=major&&major===state.major?[...new Set(features.filter(f=>f.major===major).map(f=>f.middle))].sort((a,b)=>a.localeCompare(b,'ko')):[];
    return `<button class="nav-item ${active?'active':''}" data-major="${esc(major)}" ${active?'aria-current="page"':''}>${icon(categoryIcons[name])}<span>${esc(name)}</span><span class="nav-count">${count}</span></button>${middle.length?`<div class="nav-sub">${middle.map(value=>`<button data-middle="${esc(value)}" class="${state.middle===value?'active':''}" ${state.middle===value?'aria-current="true"':''}>${esc(value)}</button>`).join('')}</div>`:''}`;
   }).join('');
@@ -73,7 +73,7 @@
   $('#active-filters').innerHTML=Object.entries(labels).filter(([,v])=>v).map(([key,value])=>`<button class="active-chip ${key==='action'?'purpose-chip '+purposeClass(value):''}" data-clear="${key}" aria-label="${esc(value)} 필터 해제">${esc(value)}<span aria-hidden="true">×</span></button>`).join('');
  }
  function renderView(){
-  $$('[data-view]').forEach(b=>{const on=b.dataset.view===state.view;b.classList.toggle('selected',on);if(b.getAttribute('role')==='tab'){b.setAttribute('aria-selected',on);b.tabIndex=on?0:-1;}});
+  $$('[data-view]').forEach(b=>{const on=!window.GuideQnA?.isOpen()&&b.dataset.view===state.view;b.classList.toggle('selected',on);if(b.getAttribute('role')==='tab'){b.setAttribute('aria-selected',on);b.tabIndex=on?0:-1;}});
   $('#cards').setAttribute('aria-labelledby','tab-'+state.view);$('#saved-count').textContent=saved.size;$('#sidebar-saved-count').textContent=saved.size;$('#sidebar-recent-count').textContent=recent.length;
   const title=state.view==='saved'?'즐겨찾기':state.view==='recent'?'최근 본 기능':state.major||'전체 기능';
   $('#list-title').firstChild.textContent=title+' ';$('#total-count').textContent=state.view==='saved'?saved.size:state.view==='recent'?recent.length:features.filter(f=>!state.major||f.major===state.major).length;
@@ -81,20 +81,22 @@
  function render(){
   if(!engine)return;
   renderNav();renderFilters();renderView();$('#search').value=state.q;$('#clear-search').hidden=!state.q;
-  $('#scenario-section').hidden=Boolean(state.q)||state.view!=='all';
+  $('#scenario-section').hidden=Boolean(state.q)||state.view!=='all'||Boolean(window.GuideQnA?.isOpen());
   const response=engine.search(state.q,filterValues());lastResult=response;
   let items=response.items.filter(({feature:f})=>(state.view!=='saved'||saved.has(f.id))&&(state.view!=='recent'||recent.includes(f.id)));
   if(state.view==='recent'&&!state.q)items.sort((a,b)=>recent.indexOf(a.feature.id)-recent.indexOf(b.feature.id));
   else if(state.sort==='name')items.sort((a,b)=>a.feature.title.localeCompare(b.feature.title,'ko'));
   else if(state.sort==='category')items.sort((a,b)=>(a.feature.major+a.feature.middle+a.feature.title).localeCompare(b.feature.major+b.feature.middle+b.feature.title,'ko'));
   const displayQuery=state.q.length>72?state.q.slice(0,72)+'…':state.q;
-  $('#result-summary').innerHTML=state.q?`‘<strong>${esc(displayQuery)}</strong>’ 검색 결과 <strong>${items.length}</strong>개`:`<strong>${items.length}</strong>개 기능 ${state.view==='recent'?'· 최근 확인한 순서로 보여드려요':'· 필요한 가이드를 선택하세요'}`;
+  const qnaCount=state.q&&state.view==='all'?(window.GuideQnA?.countMatches(state.q)||0):0;
+  $('#result-summary').innerHTML=state.q?`‘<strong>${esc(displayQuery)}</strong>’ · 홈페이지 기능 <strong>${items.length}</strong>개${qnaCount?` · 상담사 QnA <strong>${qnaCount}</strong>개`:''}`:`<strong>${items.length}</strong>개 기능 ${state.view==='recent'?'· 최근 확인한 순서로 보여드려요':'· 필요한 가이드를 선택하세요'}`;
   const context=$('#search-context');context.hidden=true;context.innerHTML='';
   if(state.q&&response.intent?.unsupported){context.hidden=false;context.innerHTML=`${icon('chat')}<span>홈페이지에서 가능한 조치는 기능별 이용 조건을 확인해주세요. ${esc(response.intent.label||'가까운 안내 기능을 찾아봤어요.')}</span>`;}
   else if(state.q&&response.correction){context.hidden=false;context.innerHTML=`<span>비슷한 검색어: </span><button data-query="${esc(response.correction)}">${esc(response.correction)}</button><span>· 입력한 질문과 함께 확인했어요.</span>`;}
   else if(state.q&&response.lowConfidence&&items.length){context.hidden=false;context.innerHTML='<span>가까운 기능을 찾았어요. 상품·처리 유형이 고객의 상황과 맞는지 확인해주세요.</span>';}
   $('#cards').innerHTML=items.map((item,index)=>cardHTML(item,index)).join('');$('#cards').setAttribute('aria-busy','false');
-  $('#empty-state').hidden=items.length>0;if(!items.length)renderEmpty(response);
+  $('#empty-state').hidden=items.length>0||qnaCount>0;if(!items.length)renderEmpty(response);
+  window.GuideQnA?.setQuery(state.q,{showGlobal:state.view==='all'});
  }
  function cardHTML({feature:f,reason,matchedTerms=[]},index){
   const screen=screenInfo(f),showReason=state.q&&reason;
@@ -139,16 +141,19 @@
  function closeSuggestions(){suggestions=[];suggestionIndex=-1;$('#search-suggestions').hidden=true;$('#search').setAttribute('aria-expanded','false');$('#search').removeAttribute('aria-activedescendant');}
  function showSuggestions(){
   if(!engine||!$('#search').value.trim()){closeSuggestions();return;}
-  suggestions=engine.suggest(queryText($('#search').value)).slice(0,7);suggestionIndex=-1;
+  const q=queryText($('#search').value),community=window.GuideQnA?.suggest?.(q)||[];
+  const guide=engine.suggest(q),merged=window.GuideQnA?.isOpen()?[...community,...guide]:[...guide.slice(0,4),...community,...guide.slice(4)];
+  suggestions=[...new Map(merged.map(item=>[item.text,item])).values()].slice(0,7);suggestionIndex=-1;
   $('#search-suggestions').innerHTML=suggestions.map((v,i)=>`<li role="presentation"><button type="button" id="suggestion-${i}" role="option" aria-selected="false" data-suggestion="${i}" tabindex="-1"><span>${esc(v.text)}</span><small>${esc(v.label||'관련 검색어')}</small></button></li>`).join('');
   $('#search-suggestions').hidden=!suggestions.length;$('#search').setAttribute('aria-expanded',!!suggestions.length);$('#search').removeAttribute('aria-activedescendant');
  }
- function chooseSuggestion(index){const choice=suggestions[index];if(choice)setQuery(choice.text);}
+ function chooseSuggestion(index){const choice=suggestions[index];if(choice)setQuery(choice.text,choice.type==='qna'&&state.view!=='all');}
  function updateSuggestionIndex(index){suggestionIndex=index;$$('[role="option"]',$('#search-suggestions')).forEach((node,i)=>node.setAttribute('aria-selected',i===index));$('#search').setAttribute('aria-activedescendant','suggestion-'+index);}
  for(const node of $$('[data-icon]'))node.innerHTML=icon(node.dataset.icon);
  document.addEventListener('click',event=>{
-  if(event.target.closest('[data-home]')){event.preventDefault();if(selected)closeGuide();reset();setMenu(false);window.scrollTo({top:0,behavior:'smooth'});return;}
+  if(event.target.closest('[data-home]')){event.preventDefault();if(window.GuideQnA?.close()===false)return;if(selected)closeGuide();reset();setMenu(false);window.scrollTo({top:0,behavior:'smooth'});return;}
   const b=event.target.closest('button');if(!b){if(!event.target.closest('.search-control'))closeSuggestions();return;}
+  if(b.matches('[data-major],[data-middle],[data-view],[data-open],[data-save]')&&window.GuideQnA?.close()===false)return;
   if(b.dataset.suggestion!==undefined){chooseSuggestion(Number(b.dataset.suggestion));return;}
   if(b.dataset.major!==undefined){state.major=b.dataset.major;state.middle='';state.minor='';state.view='all';render();setMenu(false);(matchMedia('(max-width:700px)').matches?$('#mobile-menu'):document.querySelector(`[data-major="${CSS.escape(state.major)}"]`))?.focus({preventScroll:true});}
   else if(b.dataset.middle!==undefined){state.middle=b.dataset.middle;state.minor='';render();setMenu(false);(matchMedia('(max-width:700px)').matches?$('#mobile-menu'):document.querySelector(`[data-middle="${CSS.escape(state.middle)}"]`))?.focus({preventScroll:true});}
@@ -190,7 +195,7 @@
  $('.tabs').addEventListener('keydown',event=>{if(!['ArrowLeft','ArrowRight','Home','End'].includes(event.key))return;const tabs=$$('[role="tab"]',$('.tabs')),index=tabs.indexOf(event.target);if(index<0)return;event.preventDefault();const next=event.key==='Home'?0:event.key==='End'?tabs.length-1:(index+(event.key==='ArrowRight'?1:-1)+tabs.length)%tabs.length;state.view=tabs[next].dataset.view;render();tabs[next].focus();});
  document.addEventListener('keydown',event=>{
   if(event.key==='Tab'&&$('#sidebar').classList.contains('open')&&matchMedia('(max-width:700px)').matches){const nodes=$$('a[href],button:not(:disabled)',$('#sidebar')).filter(n=>n.getClientRects().length);const index=nodes.indexOf(document.activeElement);if(event.shiftKey&&index<=0){event.preventDefault();nodes.at(-1)?.focus();}else if(!event.shiftKey&&index===nodes.length-1){event.preventDefault();nodes[0]?.focus();}}
-  if((event.key==='/'&&!['INPUT','TEXTAREA','SELECT'].includes(event.target.tagName))||((event.ctrlKey||event.metaKey)&&event.key.toLowerCase()==='k')){event.preventDefault();if($('#image-dialog').open)$('#image-dialog').close();if($('#about-dialog').open)$('#about-dialog').close();if(selected)closeGuide();$('#search').focus();}
+  if((event.key==='/'&&!['INPUT','TEXTAREA','SELECT'].includes(event.target.tagName))||((event.ctrlKey||event.metaKey)&&event.key.toLowerCase()==='k')){event.preventDefault();if(window.GuideQnA?.closeDialogs?.()===false)return;if($('#image-dialog').open)$('#image-dialog').close();if($('#about-dialog').open)$('#about-dialog').close();if(selected)closeGuide();$('#search').focus();}
   if(event.key==='Escape'&&$('#sidebar').classList.contains('open')){setMenu(false);$('#mobile-menu').focus();}
  });
  window.addEventListener('resize',()=>{if(!matchMedia('(max-width:700px)').matches&&$('#sidebar').classList.contains('open'))setMenu(false);});
@@ -204,6 +209,7 @@
    features=catalog.features;allowedHosts=new Set(catalog.allowedHosts||[]);saved=new Set([...saved].filter(id=>features.some(f=>f.id===id)));recent=recent.filter(id=>features.some(f=>f.id===id));
    engine=window.GuideSearch.createEngine(features,dictionary);$('#feature-count').textContent=features.length;
    if(catalog.updated){$('#catalog-updated').textContent=catalog.updated.replaceAll('-','.');$('#catalog-updated').dateTime=catalog.updated;}
+   if(window.GuideQnA){try{window.GuideQnA.init({dictionary,onSearch:q=>setQuery(q),onOpen:()=>{setMenu(false);closeSuggestions();renderNav();renderView();},onUpdate:()=>render()});}catch(error){console.error('QnA 화면을 준비하지 못했습니다.');}}
    render();const id=new URLSearchParams(location.hash.slice(1)).get('guide');if(id)openGuide(id);
   }catch(error){$('#cards').setAttribute('aria-busy','false');$('#cards').innerHTML=`<div class="empty-state"><span class="empty-symbol">${icon('chat')}</span><h3>가이드북을 준비하지 못했어요.</h3><p>${esc(error.message)} 잠시 후 다시 시도해주세요.</p><button class="primary-button" data-reload>다시 불러오기</button></div>`;}
  }

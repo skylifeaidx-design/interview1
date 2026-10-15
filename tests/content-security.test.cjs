@@ -13,5 +13,5 @@ test('화면 파일 경로 이탈 차단',()=>{for(const src of ['../.env','scre
 test('중복 ID로 공유 링크가 뒤바뀌지 않게 차단',()=>assert.throws(()=>validateCatalog(change(d=>d.features[1].id=d.features[0].id),root)));
 test('예시 데이터를 실제 화면으로 오해하지 않게 캡션 검증',()=>assert.throws(()=>validateCatalog(change(d=>{d.features[0].screen.kind='source';d.features[0].screen.caption='실제 청구내역';}),root)));
 test('필수 조치 단계와 처리 유형 검증',()=>{assert.throws(()=>validateCatalog(change(d=>d.features[0].steps=[]),root));assert.throws(()=>validateCatalog(change(d=>d.features[0].availability.mode='guaranteed'),root));});
-test('정적 배포에 외부 패키지와 서버 프레임워크 미포함',()=>{const pkg=require('../package.json');assert.deepEqual(Object.keys(pkg.dependencies||{}),[]);assert.deepEqual(Object.keys(pkg.devDependencies||{}),[]);});
+test('공유 파일 저장 SDK만 허용하고 DB·서버 프레임워크 의존성 미포함',()=>{const pkg=require('../package.json');assert.deepEqual(pkg.dependencies,{'@vercel/blob':'2.8.2'});assert.deepEqual(Object.keys(pkg.devDependencies||{}),[]);});
 test('Vercel의 엄격한 보안 헤더',()=>{const v=JSON.parse(fs.readFileSync(path.join(root,'vercel.json'),'utf8'));const headers=new Map(v.headers[0].headers.map(h=>[h.key,h.value]));assert(headers.get('Content-Security-Policy').includes("script-src 'self'"));assert(!headers.get('Content-Security-Policy').includes('unsafe-inline'));assert.equal(headers.get('X-Content-Type-Options'),'nosniff');});

@@ -31,12 +31,13 @@ function validateCatalog(catalog, projectRoot=root) {
 
 function validateProject(projectRoot=root) {
   const pkg=JSON.parse(fs.readFileSync(path.join(projectRoot,'package.json'),'utf8'));
-  assert(!Object.keys(pkg.dependencies||{}).length&&!Object.keys(pkg.devDependencies||{}).length,'홈페이지·외부 패키지를 포함하지 않는 독립 정적 프로젝트여야 합니다.');
+  assert.deepEqual(pkg.dependencies,{'@vercel/blob':'2.8.2'},'공유 파일 저장용 Vercel Blob SDK만 허용됩니다.');
+  assert(!Object.keys(pkg.devDependencies||{}).length,'불필요한 개발 의존성을 포함하지 않습니다.');
   const catalog=loadCatalog(projectRoot);
   const result=validateCatalog(catalog,projectRoot);
   const dictionary=JSON.parse(fs.readFileSync(path.join(projectRoot,'content/search-dictionary.json'),'utf8'));
   assert(dictionary&&typeof dictionary==='object'&&!Array.isArray(dictionary),'검색 사전을 확인해주세요.');
-  for(const file of ['src/index.html','src/app.js','src/styles.css','src/search.js'])assert(fs.statSync(path.join(projectRoot,file)).isFile(),`원본 파일이 없습니다: ${file}`);
+  for(const file of ['src/index.html','src/app.js','src/styles.css','src/search.js','src/qna.js','src/qna.css','src/qna-search.js','api/qna.js'])assert(fs.statSync(path.join(projectRoot,file)).isFile(),`원본 파일이 없습니다: ${file}`);
   const html=fs.readFileSync(path.join(projectRoot,'src/index.html'),'utf8');
   assert(!/<script\b[^>]*>\s*[^<\s]/i.test(html),'HTML 내부 스크립트 대신 분리된 JS 파일을 사용해주세요.');
   assert(!/\son\w+\s*=|\sstyle\s*=/i.test(html),'HTML 인라인 이벤트·스타일을 제거해주세요.');

@@ -3,11 +3,19 @@ const root=path.resolve(__dirname,'../dist');
 const headerRules=JSON.parse(fs.readFileSync(path.resolve(__dirname,'../vercel.json'),'utf8')).headers;
 const headers=headerRules[0].headers;
 const mime={'.html':'text/html; charset=utf-8','.css':'text/css; charset=utf-8','.js':'text/javascript; charset=utf-8','.json':'application/json; charset=utf-8','.svg':'image/svg+xml','.jpg':'image/jpeg','.png':'image/png','.woff2':'font/woff2'};
+const port=Number(process.env.PORT)||4180;
+const {createQnaHandler}=require('../server/qna-http.cjs');
+let qna;
+if(process.env.QNA_LOCAL_TEST==='1'){
+  const {createQnaService,createMemoryStore}=require('../server/qna-service.cjs');
+  qna=createQnaHandler({service:createQnaService({store:createMemoryStore()}),env:{QNA_ALLOWED_ORIGINS:`http://127.0.0.1:${port},http://localhost:${port}`}});
+}else qna=createQnaHandler();
 const server=http.createServer((request,response)=>{
   for(const {key,value} of headers)response.setHeader(key,value);
-  if(!['GET','HEAD'].includes(request.method)){response.writeHead(405);return response.end();}
   let pathname;try{pathname=decodeURIComponent(new URL(request.url,'http://localhost').pathname);}catch{response.writeHead(400);return response.end();}
   for(const rule of headerRules.slice(1))if(rule.source===pathname)for(const {key,value} of rule.headers)response.setHeader(key,value);
+  if(pathname==='/api/qna')return qna(request,response);
+  if(!['GET','HEAD'].includes(request.method)){response.writeHead(405);return response.end();}
   if(pathname.includes('\\')||pathname.includes('\0')||pathname.split('/').some(p=>p.startsWith('.'))){response.writeHead(403);return response.end();}
   const file=path.resolve(root,'.'+(pathname==='/'?'/index.html':pathname));
   if(!file.startsWith(root+path.sep)){response.writeHead(403);return response.end();}
@@ -16,4 +24,4 @@ const server=http.createServer((request,response)=>{
   if(request.method==='HEAD')return response.end();
   fs.createReadStream(file).pipe(response);
 });
-server.listen(Number(process.env.PORT)||4180,'127.0.0.1',()=>console.log('미리보기: http://127.0.0.1:'+(Number(process.env.PORT)||4180)));
+server.listen(port,'127.0.0.1',()=>console.log('미리보기: http://127.0.0.1:'+port+(process.env.QNA_LOCAL_TEST==='1'?' (QnA 테스트용 임시 메모리 저장)':'')));

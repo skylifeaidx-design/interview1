@@ -11,8 +11,9 @@ if(path.dirname(dist)!==root||path.basename(dist)!=='dist'||fs.lstatSync(dist,{t
 fs.rmSync(dist,{recursive:true,force:true});
 fs.mkdirSync(dist,{recursive:true});
 
-// Copy only the four reviewed client files and the explicit public asset tree.
-for(const file of ['index.html','styles.css','app.js','search.js'])fs.copyFileSync(path.join(root,'src',file),path.join(dist,file));
+// Server handlers and private state are never copied to the public directory.
+const clientFiles=['index.html','styles.css','app.js','search.js','qna.js','qna.css','qna-search.js'];
+for(const file of clientFiles)fs.copyFileSync(path.join(root,'src',file),path.join(dist,file));
 const catalog=loadCatalog(root);
 const publicRoot=path.join(root,'public');
 const realRoot=fs.realpathSync(root),realPublic=fs.realpathSync(publicRoot);
@@ -25,6 +26,6 @@ const catalogJson=JSON.stringify(catalog);
 fs.writeFileSync(path.join(dist,'data.json'),catalogJson);
 fs.writeFileSync(path.join(dist,'search-dictionary.json'),JSON.stringify(dictionary));
 const hash=crypto.createHash('sha256').update(catalogJson).update(JSON.stringify(dictionary));
-for(const file of ['index.html','styles.css','app.js','search.js'])hash.update(fs.readFileSync(path.join(dist,file)));
+for(const file of clientFiles)hash.update(fs.readFileSync(path.join(dist,file)));
 fs.writeFileSync(path.join(dist,'release.json'),JSON.stringify({version:catalog.version,contentUpdated:catalog.updated,guideUpdated:catalog.guideUpdated,features:result.features,buildHash:hash.digest('hex'),commit:process.env.VERCEL_GIT_COMMIT_SHA||null}));
 console.log(JSON.stringify({빌드:'완료',...result,output:'dist'}));

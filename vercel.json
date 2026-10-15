@@ -4,6 +4,7 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "installCommand": "npm ci --ignore-scripts",
+  "functions": {"api/qna.js": {"maxDuration": 30}},
   "headers": [
     {
       "source": "/(.*)",
@@ -37,6 +38,10 @@
           "value": "public, max-age=0, must-revalidate"
         }
       ]
+    },
+    {
+      "source": "/api/qna",
+      "headers": [{"key": "Cache-Control", "value": "no-store"}]
     }
   ]
 }
