@@ -47,7 +47,7 @@ const ids=new Set(fixture.features.map(f=>f.id));
   assert(await page.locator('.card').count()===98,'전체 98개 초기 목록');
   assert((await page.title()).includes('홈페이지 기능 가이드북')&&(await page.locator('.brand').innerText()).includes('홈페이지 기능 가이드북'),'변경된 가이드북 제목');
   assert(await page.locator('#download-html,a[download]').count()===0,'HTML 저장 링크 제거');
-  assert((await context.request.head(new URL('skylife-counselor-guide.html',base).href)).status()===404,'기존 HTML 다운로드 경로 제거');
+  assert(await page.evaluate(async()=> (await fetch('skylife-counselor-guide.html',{method:'HEAD',cache:'no-store'})).status())===404,'기존 HTML 다운로드 경로 제거');
   assert(await page.locator('.scenario-grid button').count()===4,'이사·요금·장애·개통 빠른 시나리오');
   assert(await page.locator('.brand img').evaluate(n=>n.complete&&n.naturalWidth>0),'브랜드 로고 표시');
   assert(await page.evaluate(()=>parseFloat(getComputedStyle(document.querySelector('.card p')).fontSize)>=14&&parseFloat(getComputedStyle(document.querySelector('.card-category')).fontSize)>=13),'카드 본문14px 및 분류13px 읽기 크기');
