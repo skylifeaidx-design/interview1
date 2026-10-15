@@ -175,7 +175,7 @@ test('Blob adapter는 고정 private 파일을 캐시 없이 읽고 생성·갱�
   const store = createBlobStore({ env: { BLOB_READ_WRITE_TOKEN: 'test-placeholder' }, loadSdk: async () => api });
   assert.deepEqual(await store.read(), { value, etag: 'v1' });
   await store.write(value, { createOnly: true }); await store.write(value, { ifMatch: 'v1' });
-  assert.equal(calls[0][1], PATHNAME); assert.deepEqual(calls[0][2], { access: 'private', useCache: false });
+  assert.equal(calls[0][1], PATHNAME); assert.deepEqual(calls[0][2], { access: 'private', useCache: false, headers: { 'accept-encoding': 'identity' } });
   assert.equal(calls[1][3].allowOverwrite, false); assert.equal(calls[1][3].ifMatch, undefined);
   assert.equal(calls[2][3].ifMatch, 'v1'); assert.equal(calls[2][3].allowOverwrite, true);
   assert(!JSON.stringify(calls).includes('test-placeholder'));

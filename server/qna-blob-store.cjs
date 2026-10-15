@@ -27,10 +27,14 @@ function createBlobStore({ env = process.env, loadSdk = () => import('@vercel/bl
     async read() {
       assertConfigured();
       const api = await sdk();
-      const result = await api.get(PATHNAME, { access: 'private', useCache: false });
+      const result = await api.get(PATHNAME, { access: 'private', useCache: false, headers: { 'accept-encoding': 'identity' } });
       if (!result) return null;
       if (result.statusCode !== 200 || !result.stream) { await cancel(result.stream); throw new Error('공유 파일을 읽을 수 없습니다.'); }
       if (result.blob.size > maximumBytes) { await cancel(result.stream); throw new QnaError(503, 'STORAGE_SIZE_LIMIT', '공유 저장 내용의 크기를 확인하고 있습니다.'); }
+      if (!result.blob.etag || /^W\//i.test(result.blob.etag)) {
+        await result.stream.cancel();
+        throw new QnaError(503, 'STORAGE_ETAG_INVALID', '공유 파일의 저장 버전을 확인하지 못했습니다. 잠시 후 다시 시도해주세요.');
+      }
       return { value: JSON.parse(await readText(result.stream)), etag: result.blob.etag };
     },
     async write(value, { ifMatch, createOnly = false } = {}) {
