@@ -10,7 +10,6 @@
  const defaults=()=>({q:'',major:'',middle:'',minor:'',product:'',login:'',availability:'',action:'',view:'all',sort:'recommended'});
  let state=defaults(),features=[],allowedHosts=new Set(),engine=null,selected=null,trigger=null,toastTimer,debounce,suggestions=[],suggestionIndex=-1,lastResult=null;
  const queryText=value=>String(value??'').slice(0,500);
- const embedded=$('#guide-data'),isFile=location.protocol==='file:';
  const savedKey='skylife-guide:saved',recentKey='skylife-guide:recent';
  function storedIDs(key){try{const value=JSON.parse(localStorage.getItem(key)||'[]');return Array.isArray(value)?value.filter(v=>typeof v==='string'&&/^f-[a-z0-9-]+$/i.test(v)).slice(0,100):[];}catch{return [];}}
  let saved=new Set(storedIDs(savedKey)),recent=storedIDs(recentKey);
@@ -33,7 +32,7 @@
   try{history.replaceState(null,'',url.href);}catch{if(selected)location.hash='guide='+encodeURIComponent(selected.id);}
  }
  function shareLink(id){
-  const value=isFile?embedded?.dataset.publicUrl:location.href;if(!value)return null;
+  const value=location.href;if(!value)return null;
   try{const url=new URL(value);if(!/^https?:$/.test(url.protocol))return null;url.search='';url.hash='guide='+id;return url.href;}catch{return null;}
  }
  async function copy(text){
@@ -154,7 +153,7 @@
   else if(b.id==='guide-close')closeGuide();
   else if(b.id==='copy-script')copy(selected.script);
   else if(b.id==='copy-path')copy(selected.menu.join(' → '));
-  else if(b.id==='share-guide'){const url=shareLink(selected.id);url?copy(url):toast('공유할 배포 주소가 설정되지 않았습니다. HTML 파일을 전달해 공유해주세요.');}
+  else if(b.id==='share-guide'){const url=shareLink(selected.id);url?copy(url):toast('운영 웹페이지에서 기능별 링크를 공유해주세요.');}
   else if(b.id==='print-guide')window.print();
   else if(b.id==='zoom-button'){const f=selected;$('#zoom-image').src=safeImage(f.screen.src);$('#zoom-image').alt=f.title+' · '+screenInfo(f)[0];$('#zoom-title').textContent=f.title+' · 화면 전체 보기';$('#zoom-caption').textContent=f.screen.caption||'';$('#zoom-frame').classList.remove('original');$('#zoom-fit').setAttribute('aria-pressed','false');$('#zoom-fit').textContent='원본 크기';$('#image-dialog').showModal();}
   else if(b.id==='zoom-fit'){const original=$('#zoom-frame').classList.toggle('original');b.setAttribute('aria-pressed',original);b.textContent=original?'화면에 맞추기':'원본 크기';}
@@ -191,12 +190,10 @@
  async function jsonFile(name){const response=await fetch(name,{credentials:'same-origin',cache:'no-cache'});if(!response.ok)throw Error('기능 안내를 불러오지 못했습니다.');return response.json();}
  async function init(){
   try{
-   const dictionaryEmbed=$('#guide-dictionary')||$('#search-dictionary-data');
-   const [catalog,dictionary]=await Promise.all([embedded?JSON.parse(embedded.textContent):jsonFile('data.json'),dictionaryEmbed?JSON.parse(dictionaryEmbed.textContent):jsonFile('search-dictionary.json')]);
+   const [catalog,dictionary]=await Promise.all([jsonFile('data.json'),jsonFile('search-dictionary.json')]);
    features=catalog.features;allowedHosts=new Set(catalog.allowedHosts||[]);saved=new Set([...saved].filter(id=>features.some(f=>f.id===id)));recent=recent.filter(id=>features.some(f=>f.id===id));
    engine=window.GuideSearch.createEngine(features,dictionary);$('#feature-count').textContent=features.length;
    if(catalog.updated){$('#catalog-updated').textContent=catalog.updated.replaceAll('-','.');$('#catalog-updated').dateTime=catalog.updated;}
-   if(embedded){$('#download-html').href=location.href.split('#')[0].split('?')[0];}
    render();const id=new URLSearchParams(location.hash.slice(1)).get('guide');if(id)openGuide(id);
   }catch(error){$('#cards').setAttribute('aria-busy','false');$('#cards').innerHTML=`<div class="empty-state"><span class="empty-symbol">${icon('chat')}</span><h3>가이드북을 준비하지 못했어요.</h3><p>${esc(error.message)} 잠시 후 다시 시도해주세요.</p><button class="primary-button" data-reload>다시 불러오기</button></div>`;}
  }

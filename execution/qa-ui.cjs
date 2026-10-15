@@ -2,7 +2,6 @@
 const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
 const fs=require('node:fs');
 const path=require('node:path');
-const {pathToFileURL}=require('node:url');
 
 const project=path.resolve(__dirname,'..');
 const base=process.env.GUIDE_TEST_URL||'http://127.0.0.1:4180/';
@@ -13,8 +12,8 @@ const fixture=JSON.parse(fs.readFileSync(path.join(project,'dist','data.json'),'
 const ids=new Set(fixture.features.map(f=>f.id));
 
 (async()=>{
- let browser,page,phase='web',offlineFile=path.join(project,'dist','skylife-counselor-guide.html');
- const results=[],errors=[],cspErrors=[],blocked=[],requests=[],fileRequests=[];
+ let browser,page,phase='web';
+ const results=[],errors=[],cspErrors=[],blocked=[],requests=[];
  const assert=(condition,name,detail)=>{results.push({name,pass:!!condition,...(detail===undefined?{}:{detail})});if(!condition)throw Error(name);};
  const check=async(name,run)=>{try{await run();}catch(error){if(!results.length||results.at(-1).pass)results.push({name,pass:false,detail:error.message});}};
  const search=async q=>{await page.locator('#search').fill(q);await page.locator('#search-form button[type="submit"]').click();await page.waitForTimeout(230);};
@@ -29,7 +28,7 @@ const ids=new Set(fixture.features.map(f=>f.id));
   const context=await browser.newContext({viewport:{width:1440,height:1100},locale:'ko-KR',acceptDownloads:true});
   await context.route('**/*',async route=>{
    const value=route.request().url();const url=new URL(value);
-   if(url.protocol==='file:'||url.origin===origin){await route.continue();return;}
+   if(url.origin===origin){await route.continue();return;}
    blocked.push(value);await route.abort('blockedbyclient');
   });
   await context.addInitScript(()=>{
@@ -41,11 +40,14 @@ const ids=new Set(fixture.features.map(f=>f.id));
   });
   page=await context.newPage();page.on('pageerror',e=>errors.push({phase,message:e.message}));
   page.on('console',m=>{if(m.type()==='error'&&/content security|violates|refused to/i.test(m.text()))cspErrors.push({phase,message:m.text()});});
-  page.on('request',r=>{requests.push(r.url());if(phase==='file')fileRequests.push(r.url());});
+  page.on('request',r=>{requests.push(r.url());});
   const response=await page.goto(base,{waitUntil:'load'});await page.locator('.card').first().waitFor({timeout:20000});
   assert(response.ok(),'엄격 CSP 미리보기 정상 응답');
   assert(response.headers()['content-security-policy']?.includes("script-src 'self'"),'웹 응답에 엄격한 script-src CSP');
   assert(await page.locator('.card').count()===98,'전체 98개 초기 목록');
+  assert((await page.title()).includes('홈페이지 기능 가이드북')&&(await page.locator('.brand').innerText()).includes('홈페이지 기능 가이드북'),'변경된 가이드북 제목');
+  assert(await page.locator('#download-html,a[download]').count()===0,'HTML 저장 링크 제거');
+  assert((await context.request.head(new URL('skylife-counselor-guide.html',base).href)).status()===404,'기존 HTML 다운로드 경로 제거');
   assert(await page.locator('.scenario-grid button').count()===4,'이사·요금·장애·개통 빠른 시나리오');
   assert(await page.locator('.brand img').evaluate(n=>n.complete&&n.naturalWidth>0),'브랜드 로고 표시');
   assert(await page.evaluate(()=>parseFloat(getComputedStyle(document.querySelector('.card p')).fontSize)>=14&&parseFloat(getComputedStyle(document.querySelector('.card-category')).fontSize)>=13),'카드 본문14px 및 분류13px 읽기 크기');
@@ -142,31 +144,11 @@ const ids=new Set(fixture.features.map(f=>f.id));
    }
    await page.setViewportSize({width:1440,height:1100});await page.waitForTimeout(260);await reset();
   });
-  await check('단일 HTML 다운로드',async()=>{
-   const event=page.waitForEvent('download');await page.locator('#download-html').click();const download=await event;
-   assert(download.suggestedFilename()==='skylife-counselor-guide.html','다운로드 파일명');
-   const file=await download.path();assert(fs.statSync(file).size>1000000,'화면·데이터가 포함된 실제 HTML 다운로드');
-   assert(fs.readFileSync(file,'utf8').includes('id="guide-data"'),'다운로드 파일에 카탈로그 내장');
-   offlineFile=path.join(artifact,'skylife-counselor-guide.html');await download.saveAs(offlineFile);
-  });
-  await check('독립 HTML 오프라인 실행',async()=>{
-   phase='file';const file=offlineFile;await page.goto(pathToFileURL(file).href,{waitUntil:'load'});await page.locator('.card').first().waitFor({timeout:20000});
-   assert(await page.locator('.card').count()===98,'file:// 98개 목록');
-   assert(await page.locator('#guide-data').evaluate(n=>JSON.parse(n.textContent).features.every(f=>f.screen?.kind==='unavailable'||f.screen?.src?.startsWith('data:image/'))),'file:// 전체 98개 화면 데이터 내장');
-   await search('이사했는데 TV 설치 주소를 바꾸고 싶어요');assert((await titles()).includes('설치주소 변경 신청'),'file:// 자연어 검색');
-   await page.locator('.card-open').first().click();assert(await page.locator('.screen-button img').evaluate(n=>n.complete&&n.naturalWidth>0&&n.src.startsWith('data:image/')),'file:// 캡처 이미지 완전 내장');
-   const script=await page.locator('.script-box').innerText();await page.locator('#copy-script').click();const copied=await page.evaluate(()=>window.__qaCopies.at(-1));assert(copied?.result&&copied.value===script,'file:// 안내 문구 복사');
-   const publicURL=await page.locator('#guide-data').getAttribute('data-public-url');await page.locator('#share-guide').click();
-   if(publicURL){const share=await page.evaluate(()=>window.__qaCopies.at(-1));assert(share.result&&new URL(share.value).origin===new URL(publicURL).origin&&!share.value.startsWith('file:'),'file:// 설정된 공개 배포 주소로 공유');}
-   else assert((await page.locator('#toast').innerText()).includes('공유할 배포 주소'),'file:// 미설정된 배포 주소를 로컬경로로 오인해 공유하지 않음');
-   const direct=page.url();await page.locator('#guide-close').click();await page.goto(direct,{waitUntil:'load'});await page.locator('#guide-title').waitFor();assert(await page.locator('#guide-dialog').isVisible(),'file:// 기능ID 직접 진입');
-   assert(fileRequests.every(value=>value.startsWith('file:')&&new URL(value).pathname===new URL(pathToFileURL(file).href).pathname),'file:// HTML 외 리소스 요청 없이 작동',fileRequests.filter(value=>!value.startsWith('file:')));
-  });
   await check('실행 보안 및 네트워크',async()=>{
    assert(blocked.length===0,'외부 네트워크 요청 없음',blocked);
    assert(requests.every(value=>!new URL(value).searchParams.has('q')),'요청URL에 검색어 매개변수 없음');
    assert(errors.length===0,'브라우저 실행 오류 없음',errors);
-   assert(cspErrors.length===0,'웹·독립 HTML CSP 위반 없음',cspErrors);
+   assert(cspErrors.length===0,'웹 CSP 위반 없음',cspErrors);
   });
  }catch(error){if(!results.length||results.at(-1).pass)results.push({name:'초기화 또는 검증 실행',pass:false,detail:error.message});}
  finally{

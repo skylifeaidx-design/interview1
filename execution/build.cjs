@@ -27,5 +27,4 @@ fs.writeFileSync(path.join(dist,'search-dictionary.json'),JSON.stringify(diction
 const hash=crypto.createHash('sha256').update(catalogJson).update(JSON.stringify(dictionary));
 for(const file of ['index.html','styles.css','app.js','search.js'])hash.update(fs.readFileSync(path.join(dist,file)));
 fs.writeFileSync(path.join(dist,'release.json'),JSON.stringify({version:catalog.version,contentUpdated:catalog.updated,guideUpdated:catalog.guideUpdated,features:result.features,buildHash:hash.digest('hex'),commit:process.env.VERCEL_GIT_COMMIT_SHA||null}));
-const single=require('./single-html.cjs').embed(root,dist,catalog,dictionary);
-console.log(JSON.stringify({빌드:'완료',...result,output:'dist',singleHtml:single}));
+console.log(JSON.stringify({빌드:'완료',...result,output:'dist'}));
