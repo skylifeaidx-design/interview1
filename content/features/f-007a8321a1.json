@@ -1,0 +1,49 @@
+{
+  "id": "f-007a8321a1",
+  "title": "비밀번호 찾기·재설정",
+  "major": "회원·계정",
+  "middle": "계정 찾기",
+  "minor": "비밀번호 찾기·재설정",
+  "menu": [
+    "회원·계정",
+    "계정 찾기",
+    "비밀번호 찾기·재설정"
+  ],
+  "url": "https://www.skylife.co.kr/member/PW/certification",
+  "route": "/member/PW/certification",
+  "summary": "본인확인 후 회원 비밀번호를 다시 설정합니다.",
+  "aliases": [
+    "비번",
+    "비밀번호 몰라",
+    "암호",
+    "비번 찾기",
+    "비밀번호 초기화",
+    "비밀번호 잊음"
+  ],
+  "steps": [
+    "로그인 화면에서 비밀번호 찾기를 선택합니다.",
+    "회원 정보 확인과 본인확인을 진행합니다.",
+    "새 비밀번호를 설정하고 로그인합니다."
+  ],
+  "note": "고객이 직접 입력하도록 안내하고 비밀번호를 전달받지 마세요.",
+  "login": false,
+  "product": "공통",
+  "action": "안내",
+  "external": false,
+  "sourceVerified": true,
+  "screen": {
+    "src": "screens/f-007a8321a1.jpg",
+    "kind": "live",
+    "caption": "실제 홈페이지 화면 캡처",
+    "captured": "2026-10-14",
+    "url": "https://www.skylife.co.kr/member/PW/certification"
+  },
+  "script": "고객님, 스카이라이프 홈페이지에서 회원·계정 → 계정 찾기 → 비밀번호 찾기·재설정 메뉴로 이동해주세요. 로그인 화면에서 비밀번호 찾기를 선택합니다. 회원 정보 확인과 본인확인을 진행합니다. 새 비밀번호를 설정하고 로그인합니다.",
+  "priority": 100,
+  "availability": {
+    "mode": "action",
+    "label": "신청·변경",
+    "reviewedAt": "2026-10-14"
+  },
+  "$schema": "../feature.schema.json"
+}

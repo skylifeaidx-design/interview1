@@ -1,0 +1,50 @@
+{
+  "id": "f-47d34ced23",
+  "title": "요금 할인 안내",
+  "major": "요금·납부",
+  "middle": "요금 안내",
+  "minor": "요금 할인 안내",
+  "menu": [
+    "고객지원",
+    "서비스 안내",
+    "요금 안내",
+    "요금 할인"
+  ],
+  "url": "https://www.skylife.co.kr/center/info/charge/sale",
+  "route": "/center/info/charge/sale",
+  "summary": "할인 유형과 적용 조건을 확인합니다.",
+  "aliases": [
+    "복지 할인",
+    "장애인",
+    "기초수급",
+    "할인 조건",
+    "감면",
+    "요금 할인"
+  ],
+  "steps": [
+    "요금 할인 안내 화면을 엽니다.",
+    "고객에게 해당하는 할인 항목을 찾습니다.",
+    "적용 조건과 신청 방법·필요서류를 확인합니다."
+  ],
+  "note": "중복 할인과 대상 조건은 현재 안내 기준으로 확인하세요.",
+  "login": false,
+  "product": "공통",
+  "action": "안내",
+  "external": false,
+  "sourceVerified": true,
+  "screen": {
+    "src": "screens/f-47d34ced23.jpg",
+    "kind": "live",
+    "caption": "실제 홈페이지 화면 캡처",
+    "captured": "2026-10-14",
+    "url": "https://www.skylife.co.kr/center/info/charge/sale"
+  },
+  "script": "고객님, 스카이라이프 홈페이지에서 고객지원 → 서비스 안내 → 요금 안내 → 요금 할인 메뉴로 이동해주세요. 요금 할인 안내 화면을 엽니다. 고객에게 해당하는 할인 항목을 찾습니다. 적용 조건과 신청 방법·필요서류를 확인합니다.",
+  "priority": 100,
+  "availability": {
+    "mode": "guide",
+    "label": "정보 안내",
+    "reviewedAt": "2026-10-14"
+  },
+  "$schema": "../feature.schema.json"
+}

@@ -1,0 +1,46 @@
+{
+  "id": "f-37d881c155",
+  "title": "인터넷 부가서비스 안내",
+  "major": "가입·상품",
+  "middle": "인터넷",
+  "minor": "인터넷 부가서비스 안내",
+  "menu": [
+    "상품",
+    "인터넷",
+    "부가서비스"
+  ],
+  "url": "https://www.skylife.co.kr/product/internet/all#additional",
+  "route": "/product/internet/all#additional",
+  "summary": "인터넷 부가서비스의 종류와 이용 안내를 확인합니다.",
+  "aliases": [
+    "인터넷 추가서비스",
+    "인터넷 부가서비스",
+    "와이파이 서비스"
+  ],
+  "steps": [
+    "인터넷 상품 화면의 부가서비스 영역을 엽니다.",
+    "관심 서비스를 선택합니다.",
+    "이용 조건과 요금·신청 안내를 확인합니다."
+  ],
+  "note": "실제 가입내역은 마이의 인터넷 부가서비스 가입내역에서 확인합니다.",
+  "login": false,
+  "product": "인터넷",
+  "action": "안내",
+  "external": false,
+  "sourceVerified": true,
+  "screen": {
+    "src": "screens/f-37d881c155.jpg",
+    "kind": "live",
+    "caption": "실제 홈페이지 화면 캡처",
+    "captured": "2026-10-14",
+    "url": "https://www.skylife.co.kr/product/internet/all#additional"
+  },
+  "script": "고객님, 스카이라이프 홈페이지에서 상품 → 인터넷 → 부가서비스 메뉴로 이동해주세요. 인터넷 상품 화면의 부가서비스 영역을 엽니다. 관심 서비스를 선택합니다. 이용 조건과 요금·신청 안내를 확인합니다.",
+  "priority": 100,
+  "availability": {
+    "mode": "guide",
+    "label": "정보 안내",
+    "reviewedAt": "2026-10-14"
+  },
+  "$schema": "../feature.schema.json"
+}

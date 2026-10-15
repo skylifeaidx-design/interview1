@@ -1,0 +1,48 @@
+{
+  "id": "f-ac9b15e823",
+  "title": "통신자료제공내역 조회",
+  "major": "문의·고객지원",
+  "middle": "서비스 안내",
+  "minor": "통신자료제공내역 조회",
+  "menu": [
+    "고객지원",
+    "서비스 안내",
+    "통신자료제공내역"
+  ],
+  "url": "https://www.skylife.co.kr/center/info/cdp/certification",
+  "route": "/center/info/cdp/certification",
+  "summary": "본인확인 후 통신자료 제공내역 조회 절차를 진행합니다.",
+  "aliases": [
+    "통신자료",
+    "정보 제공",
+    "수사기관",
+    "자료제공내역",
+    "통신자료 조회"
+  ],
+  "steps": [
+    "통신자료제공내역 화면을 엽니다.",
+    "조회 안내를 읽고 본인확인을 진행합니다.",
+    "표시된 조회 결과와 안내사항을 확인합니다."
+  ],
+  "note": "조회 가능 범위와 기간은 현재 화면 안내를 확인하세요.",
+  "login": false,
+  "product": "공통",
+  "action": "조회",
+  "external": false,
+  "sourceVerified": true,
+  "screen": {
+    "src": "screens/f-ac9b15e823.jpg",
+    "kind": "live",
+    "caption": "실제 홈페이지 화면 캡처",
+    "captured": "2026-10-14",
+    "url": "https://www.skylife.co.kr/center/info/cdp/certification"
+  },
+  "script": "고객님, 스카이라이프 홈페이지에서 고객지원 → 서비스 안내 → 통신자료제공내역 메뉴로 이동해주세요. 통신자료제공내역 화면을 엽니다. 조회 안내를 읽고 본인확인을 진행합니다. 표시된 조회 결과와 안내사항을 확인합니다.",
+  "priority": 100,
+  "availability": {
+    "mode": "lookup",
+    "label": "조회",
+    "reviewedAt": "2026-10-14"
+  },
+  "$schema": "../feature.schema.json"
+}

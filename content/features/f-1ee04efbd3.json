@@ -1,0 +1,49 @@
+{
+  "id": "f-1ee04efbd3",
+  "title": "TV 상품별 채널 안내",
+  "major": "이용·변경",
+  "middle": "TV 채널·기기",
+  "minor": "TV 상품별 채널 안내",
+  "menu": [
+    "상품",
+    "TV",
+    "채널번호 안내",
+    "상품별 채널 안내"
+  ],
+  "url": "https://www.skylife.co.kr/product/tv/channelNo/goods",
+  "route": "/product/tv/channelNo/goods",
+  "summary": "가입 상품별로 제공되는 채널 구성을 확인합니다.",
+  "aliases": [
+    "이 채널 나와",
+    "채널 포함",
+    "상품 채널",
+    "채널 개수",
+    "가입 채널"
+  ],
+  "steps": [
+    "상품별 채널 안내 화면을 엽니다.",
+    "가입했거나 관심 있는 TV 상품을 선택합니다.",
+    "해당 상품의 제공 채널을 확인합니다."
+  ],
+  "note": "채널번호 찾기와 제공 채널 확인을 구분해 안내하세요.",
+  "login": false,
+  "product": "TV",
+  "action": "안내",
+  "external": false,
+  "sourceVerified": true,
+  "screen": {
+    "src": "screens/f-1ee04efbd3.jpg",
+    "kind": "live",
+    "caption": "실제 홈페이지 화면 캡처",
+    "captured": "2026-10-14",
+    "url": "https://www.skylife.co.kr/product/tv/channelNo/goods"
+  },
+  "script": "고객님, 스카이라이프 홈페이지에서 상품 → TV → 채널번호 안내 → 상품별 채널 안내 메뉴로 이동해주세요. 상품별 채널 안내 화면을 엽니다. 가입했거나 관심 있는 TV 상품을 선택합니다. 해당 상품의 제공 채널을 확인합니다.",
+  "priority": 100,
+  "availability": {
+    "mode": "lookup",
+    "label": "조회",
+    "reviewedAt": "2026-10-14"
+  },
+  "$schema": "../feature.schema.json"
+}

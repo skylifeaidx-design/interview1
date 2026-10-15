@@ -1,0 +1,48 @@
+{
+  "id": "f-f10000d062",
+  "title": "VOD 포인트 조회",
+  "major": "이용·변경",
+  "middle": "TV",
+  "minor": "VOD 포인트 조회",
+  "menu": [
+    "마이",
+    "TV",
+    "VOD 포인트 조회"
+  ],
+  "url": "https://www.skylife.co.kr/my/tv/point",
+  "route": "/my/tv/point",
+  "summary": "TV에 연결된 VOD 포인트와 이용 내역을 확인합니다.",
+  "aliases": [
+    "영화 포인트",
+    "포인트 남았어",
+    "VOD 잔액",
+    "브이오디",
+    "티비 포인트"
+  ],
+  "steps": [
+    "조회할 TV 가입상품을 선택합니다.",
+    "VOD 포인트 잔액을 확인합니다.",
+    "표시된 포인트 이용 내역을 확인합니다."
+  ],
+  "note": "S-머니와 VOD 포인트는 별도입니다. 고객이 문의한 포인트 종류를 먼저 확인하세요.",
+  "login": true,
+  "product": "TV",
+  "action": "조회",
+  "external": false,
+  "sourceVerified": true,
+  "screen": {
+    "src": "screens/f-f10000d062-authenticated.jpg",
+    "kind": "authenticated",
+    "caption": "테스트 계정으로 확인한 실제 기능 화면 · 고객 식별정보와 개인 조회내역을 가려 캡처했습니다.",
+    "captured": "2026-10-14",
+    "url": "https://www.skylife.co.kr/my/tv/point"
+  },
+  "script": "고객님, 스카이라이프 홈페이지에서 로그인하신 뒤 마이 → TV → VOD 포인트 조회 메뉴로 이동해주세요. 조회할 TV 가입상품을 선택합니다. VOD 포인트 잔액을 확인합니다. 표시된 포인트 이용 내역을 확인합니다.",
+  "priority": 100,
+  "availability": {
+    "mode": "lookup",
+    "label": "조회",
+    "reviewedAt": "2026-10-14"
+  },
+  "$schema": "../feature.schema.json"
+}

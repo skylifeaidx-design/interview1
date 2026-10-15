@@ -1,0 +1,48 @@
+{
+  "id": "f-45460eaaea",
+  "title": "TV 부가서비스 안내",
+  "major": "가입·상품",
+  "middle": "TV",
+  "minor": "TV 부가서비스 안내",
+  "menu": [
+    "상품",
+    "TV",
+    "부가서비스"
+  ],
+  "url": "https://www.skylife.co.kr/product/tv/all#additional",
+  "route": "/product/tv/all#additional",
+  "summary": "TV에 제공되는 부가서비스의 종류와 조건을 확인합니다.",
+  "aliases": [
+    "TV 부가서비스",
+    "OTT",
+    "유료채널",
+    "추가채널",
+    "추가 서비스"
+  ],
+  "steps": [
+    "TV 요금제 화면의 부가서비스 영역을 엽니다.",
+    "관심 부가서비스를 선택합니다.",
+    "이용요금과 신청·해지 안내를 확인합니다."
+  ],
+  "note": "실제 가입내역은 마이의 TV 부가서비스 가입내역에서 확인합니다.",
+  "login": false,
+  "product": "TV",
+  "action": "안내",
+  "external": false,
+  "sourceVerified": true,
+  "screen": {
+    "src": "screens/f-45460eaaea.jpg",
+    "kind": "live",
+    "caption": "실제 홈페이지 화면 캡처",
+    "captured": "2026-10-14",
+    "url": "https://www.skylife.co.kr/product/tv/all#additional"
+  },
+  "script": "고객님, 스카이라이프 홈페이지에서 상품 → TV → 부가서비스 메뉴로 이동해주세요. TV 요금제 화면의 부가서비스 영역을 엽니다. 관심 부가서비스를 선택합니다. 이용요금과 신청·해지 안내를 확인합니다.",
+  "priority": 100,
+  "availability": {
+    "mode": "guide",
+    "label": "정보 안내",
+    "reviewedAt": "2026-10-14"
+  },
+  "$schema": "../feature.schema.json"
+}

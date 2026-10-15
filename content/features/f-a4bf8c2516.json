@@ -1,0 +1,44 @@
+{
+  "id": "f-a4bf8c2516",
+  "title": "사업자 요금 납부 이력 조회",
+  "major": "사업자 지원",
+  "middle": "사업자 요금",
+  "minor": "사업자 요금 납부 이력 조회",
+  "menu": [
+    "고객지원",
+    "사업자 지원",
+    "사업자 요금 납부 이력 조회"
+  ],
+  "url": "https://www.skylife.co.kr/bu/invoice/pay",
+  "route": "/bu/invoice/pay",
+  "summary": "사업자 요금 납부 이력 조회 화면에서 관련 정보와 이용 안내를 확인합니다.",
+  "aliases": [
+    "사업자요금납부이력조회"
+  ],
+  "steps": [
+    "사업자 요금 납부 이력 조회 화면을 엽니다.",
+    "고객 문의에 해당하는 항목이나 분류를 선택합니다.",
+    "상세 내용과 안내된 이용 조건·다음 경로를 확인합니다."
+  ],
+  "note": "사업자 고객용 화면입니다. 화면에서 요구하는 고객 확인과 조회 조건을 확인하세요.",
+  "login": false,
+  "product": "사업자",
+  "action": "조회",
+  "external": false,
+  "sourceVerified": true,
+  "screen": {
+    "src": "screens/f-a4bf8c2516.jpg",
+    "kind": "live",
+    "caption": "실제 홈페이지 화면 캡처",
+    "captured": "2026-10-14",
+    "url": "https://www.skylife.co.kr/bu/invoice/pay"
+  },
+  "script": "고객님, 스카이라이프 홈페이지에서 고객지원 → 사업자 지원 → 사업자 요금 납부 이력 조회 메뉴로 이동해주세요. 사업자 요금 납부 이력 조회 화면을 엽니다. 고객 문의에 해당하는 항목이나 분류를 선택합니다. 상세 내용과 안내된 이용 조건·다음 경로를 확인합니다.",
+  "priority": 100,
+  "availability": {
+    "mode": "lookup",
+    "label": "조회",
+    "reviewedAt": "2026-10-14"
+  },
+  "$schema": "../feature.schema.json"
+}

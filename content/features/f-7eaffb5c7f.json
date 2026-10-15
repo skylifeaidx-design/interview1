@@ -1,0 +1,49 @@
+{
+  "id": "f-7eaffb5c7f",
+  "title": "회원정보 수정",
+  "major": "회원·계정",
+  "middle": "회원 관리",
+  "minor": "회원정보 수정",
+  "menu": [
+    "회원·계정",
+    "회원 관리",
+    "회원정보 수정"
+  ],
+  "url": "https://www.skylife.co.kr/modify",
+  "route": "/modify",
+  "summary": "로그인한 회원의 개인정보·계정 설정을 확인하고 수정합니다.",
+  "aliases": [
+    "이메일 변경",
+    "회원 정보",
+    "연락처 변경",
+    "회원 비밀번호 변경",
+    "회원탈퇴",
+    "주소 수정"
+  ],
+  "steps": [
+    "로그인 후 회원정보 수정 화면을 엽니다.",
+    "수정할 항목과 필요한 확인 절차를 확인합니다.",
+    "정보를 수정하고 저장 결과를 확인합니다."
+  ],
+  "note": "회원정보 수정과 통신상품의 가입자·설치주소 변경은 별도입니다. 회원탈퇴는 상품해지가 아닙니다.",
+  "login": true,
+  "product": "공통",
+  "action": "조회",
+  "external": false,
+  "sourceVerified": true,
+  "screen": {
+    "src": "screens/f-7eaffb5c7f-authenticated.jpg",
+    "kind": "authenticated",
+    "caption": "테스트 계정으로 확인한 실제 기능 화면 · 고객 식별정보와 개인 조회내역을 가려 캡처했습니다.",
+    "captured": "2026-10-14",
+    "url": "https://www.skylife.co.kr/modify"
+  },
+  "script": "고객님, 스카이라이프 홈페이지에서 로그인하신 뒤 회원·계정 → 회원 관리 → 회원정보 수정 메뉴로 이동해주세요. 로그인 후 회원정보 수정 화면을 엽니다. 수정할 항목과 필요한 확인 절차를 확인합니다. 정보를 수정하고 저장 결과를 확인합니다.",
+  "priority": 100,
+  "availability": {
+    "mode": "action",
+    "label": "신청·변경",
+    "reviewedAt": "2026-10-14"
+  },
+  "$schema": "../feature.schema.json"
+}

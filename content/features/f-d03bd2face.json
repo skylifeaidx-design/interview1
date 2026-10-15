@@ -1,0 +1,50 @@
+{
+  "id": "f-d03bd2face",
+  "title": "이용정지 해제·납부",
+  "major": "요금·납부",
+  "middle": "요금 납부",
+  "minor": "이용정지 해제·납부",
+  "menu": [
+    "마이",
+    "요금",
+    "요금 납부",
+    "이용정지 해제·납부"
+  ],
+  "url": "https://www.skylife.co.kr/my/charge/pay/unpaid#accordion",
+  "route": "/my/charge/pay/unpaid#accordion",
+  "summary": "미납에 따른 이용정지와 해제·납부 안내를 확인합니다.",
+  "aliases": [
+    "정지 풀기",
+    "미납정지",
+    "정지 해제",
+    "다시 보기",
+    "연체 정지",
+    "납부약속"
+  ],
+  "steps": [
+    "요금 조회·납부 화면의 이용정지 해제·납부 영역을 엽니다.",
+    "대상 상품과 미납 상태를 확인합니다.",
+    "제공되는 해제·납부 절차를 진행하고 결과 메시지를 확인합니다."
+  ],
+  "note": "모바일 일시정지 해제와 구분하세요. 모든 정지가 납부만으로 즉시 해제되는 것은 아니므로 화면의 가능 여부를 확인하세요.",
+  "login": true,
+  "product": "공통",
+  "action": "변경",
+  "external": false,
+  "sourceVerified": true,
+  "screen": {
+    "src": "screens/f-d03bd2face-authenticated.jpg",
+    "kind": "authenticated",
+    "caption": "테스트 계정으로 확인한 실제 기능 화면 · 고객 식별정보와 개인 조회내역을 가려 캡처했습니다.",
+    "captured": "2026-10-14",
+    "url": "https://www.skylife.co.kr/my/charge/pay/unpaid#accordion"
+  },
+  "script": "고객님, 스카이라이프 홈페이지에서 로그인하신 뒤 마이 → 요금 → 요금 납부 → 이용정지 해제·납부 메뉴로 이동해주세요. 요금 조회·납부 화면의 이용정지 해제·납부 영역을 엽니다. 대상 상품과 미납 상태를 확인합니다. 제공되는 해제·납부 절차를 진행하고 결과 메시지를 확인합니다.",
+  "priority": 100,
+  "availability": {
+    "mode": "action",
+    "label": "신청·변경",
+    "reviewedAt": "2026-10-14"
+  },
+  "$schema": "../feature.schema.json"
+}

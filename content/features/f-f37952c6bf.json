@@ -1,0 +1,48 @@
+{
+  "id": "f-f37952c6bf",
+  "title": "셀프개통 안내",
+  "major": "문의·고객지원",
+  "middle": "서비스 안내",
+  "minor": "셀프개통 안내",
+  "menu": [
+    "고객지원",
+    "서비스 안내",
+    "셀프개통이란"
+  ],
+  "url": "https://www.skylife.co.kr/center/info/selfopen",
+  "route": "/center/info/selfopen",
+  "summary": "모바일 셀프개통의 준비사항과 절차를 확인합니다.",
+  "aliases": [
+    "셀프개통 방법",
+    "혼자 개통",
+    "개통 준비물",
+    "개통 시간",
+    "유심 개통 방법"
+  ],
+  "steps": [
+    "셀프개통 안내 화면을 엽니다.",
+    "가입 유형에 맞는 준비사항과 절차를 확인합니다.",
+    "개통/신청 화면으로 이동해 절차를 진행합니다."
+  ],
+  "note": "안내 화면에서 실제 개통을 완료하는 것은 아닙니다. 신청 화면을 함께 안내하세요.",
+  "login": false,
+  "product": "공통",
+  "action": "신청",
+  "external": false,
+  "sourceVerified": true,
+  "screen": {
+    "src": "screens/f-f37952c6bf.jpg",
+    "kind": "live",
+    "caption": "실제 홈페이지 화면 캡처",
+    "captured": "2026-10-14",
+    "url": "https://www.skylife.co.kr/center/info/selfopen"
+  },
+  "script": "고객님, 스카이라이프 홈페이지에서 고객지원 → 서비스 안내 → 셀프개통이란 메뉴로 이동해주세요. 셀프개통 안내 화면을 엽니다. 가입 유형에 맞는 준비사항과 절차를 확인합니다. 개통/신청 화면으로 이동해 절차를 진행합니다.",
+  "priority": 100,
+  "availability": {
+    "mode": "guide",
+    "label": "정보 안내",
+    "reviewedAt": "2026-10-14"
+  },
+  "$schema": "../feature.schema.json"
+}

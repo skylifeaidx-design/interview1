@@ -1,0 +1,11 @@
+.git
+.github
+tools
+qa-*.png
+qa-*-report.json
+.env*
+credentials.json
+token.json
+.tmp
+content/catalog.json
+docs

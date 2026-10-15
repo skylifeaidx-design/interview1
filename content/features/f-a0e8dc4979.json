@@ -1,0 +1,47 @@
+{
+  "id": "f-a0e8dc4979",
+  "title": "가입 상담 간편 신청",
+  "major": "가입·상품",
+  "middle": "가입 상담",
+  "minor": "가입 상담 간편 신청",
+  "menu": [
+    "홈",
+    "가입 상담 간편 신청"
+  ],
+  "url": "https://www.skylife.co.kr/Main",
+  "route": "/Main",
+  "summary": "홈페이지에서 TV·인터넷·모바일 가입상담을 간편하게 신청합니다.",
+  "aliases": [
+    "가입 상담",
+    "전화 주세요",
+    "상담 신청",
+    "인터넷 가입",
+    "TV 가입"
+  ],
+  "steps": [
+    "홈페이지 오른쪽의 가입 상담 간편 신청 버튼을 선택합니다.",
+    "관심 상품과 상담 관련 안내를 확인합니다.",
+    "연락처와 동의 항목 등 화면에서 요구하는 정보를 입력해 접수합니다."
+  ],
+  "note": "상담 접수와 상품 개통 완료는 별도입니다.",
+  "login": false,
+  "product": "공통",
+  "action": "신청",
+  "external": false,
+  "sourceVerified": true,
+  "screen": {
+    "src": "screens/f-a0e8dc4979.jpg",
+    "kind": "live",
+    "caption": "실제 홈페이지 화면 캡처",
+    "captured": "2026-10-14",
+    "url": "https://www.skylife.co.kr/Main"
+  },
+  "script": "고객님, 스카이라이프 홈페이지 오른쪽의 가입 상담 간편 신청 버튼을 선택해주세요. 관심 상품과 상담 안내를 확인한 뒤 연락처와 동의 항목을 입력하고 접수 결과를 확인해주세요.",
+  "priority": 100,
+  "availability": {
+    "mode": "action",
+    "label": "신청·변경",
+    "reviewedAt": "2026-10-14"
+  },
+  "$schema": "../feature.schema.json"
+}

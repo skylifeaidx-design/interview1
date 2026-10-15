@@ -1,0 +1,50 @@
+{
+  "id": "f-2bb220f258",
+  "title": "모바일 요금제 안내",
+  "major": "가입·상품",
+  "middle": "모바일",
+  "minor": "모바일 요금제 안내",
+  "menu": [
+    "상품",
+    "모바일",
+    "요금제"
+  ],
+  "url": "https://www.skylife.co.kr/product/mobile/all",
+  "route": "/product/mobile/all",
+  "summary": "데이터·통화 등 사용 패턴에 맞는 모바일 요금제를 비교합니다.",
+  "aliases": [
+    "알뜰폰",
+    "무제한",
+    "모바일 요금",
+    "휴대폰 요금제",
+    "데이터 요금제",
+    "5G",
+    "LTE"
+  ],
+  "steps": [
+    "모바일 요금제 화면을 엽니다.",
+    "필터나 분류로 원하는 요금제를 찾습니다.",
+    "데이터·통화 제공량과 요금·유의사항을 확인합니다."
+  ],
+  "note": "기존 고객의 요금제 변경은 마이의 모바일 요금제 예약·변경에서 확인합니다.",
+  "login": false,
+  "product": "모바일",
+  "action": "안내",
+  "external": false,
+  "sourceVerified": true,
+  "screen": {
+    "src": "screens/f-2bb220f258.jpg",
+    "kind": "live",
+    "caption": "실제 홈페이지 화면 캡처",
+    "captured": "2026-10-14",
+    "url": "https://www.skylife.co.kr/product/mobile/all"
+  },
+  "script": "고객님, 스카이라이프 홈페이지에서 상품 → 모바일 → 요금제 메뉴로 이동해주세요. 모바일 요금제 화면을 엽니다. 필터나 분류로 원하는 요금제를 찾습니다. 데이터·통화 제공량과 요금·유의사항을 확인합니다.",
+  "priority": 100,
+  "availability": {
+    "mode": "guide",
+    "label": "정보 안내",
+    "reviewedAt": "2026-10-14"
+  },
+  "$schema": "../feature.schema.json"
+}

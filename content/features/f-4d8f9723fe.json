@@ -1,0 +1,48 @@
+{
+  "id": "f-4d8f9723fe",
+  "title": "납부 방법 변경",
+  "major": "요금·납부",
+  "middle": "요금 조회",
+  "minor": "납부 방법 변경",
+  "menu": [
+    "마이",
+    "요금",
+    "요금 납부",
+    "납부 방법 변경"
+  ],
+  "url": "https://www.skylife.co.kr/my/charge/pay/inquiry",
+  "route": "/my/charge/pay/inquiry",
+  "summary": "납부 이력 화면에서 납부방법 변경 기능을 이용합니다.",
+  "aliases": [
+    "자동이체 변경",
+    "결제카드 변경",
+    "계좌 변경",
+    "납부방법 바꾸기"
+  ],
+  "steps": [
+    "로그인 후 요금 납부 이력 조회 화면을 엽니다.",
+    "납부방법 변경을 선택합니다.",
+    "제공되는 변경 방식과 인증을 확인하고 결과를 확인합니다."
+  ],
+  "note": "변경 적용 시점과 등록 가능한 수단은 현재 화면을 확인하세요.",
+  "login": true,
+  "product": "공통",
+  "action": "변경",
+  "external": false,
+  "sourceVerified": true,
+  "screen": {
+    "src": "screens/f-4d8f9723fe-authenticated.jpg",
+    "kind": "authenticated",
+    "caption": "테스트 계정으로 확인한 실제 기능 화면 · 고객 식별정보와 개인 조회내역을 가려 캡처했습니다.",
+    "captured": "2026-10-14",
+    "url": "https://www.skylife.co.kr/my/charge/pay/inquiry"
+  },
+  "script": "고객님, 스카이라이프 홈페이지에서 로그인하신 뒤 마이 → 요금 → 요금 납부 이력 조회로 이동해주세요. 납부방법 변경을 선택한 뒤 화면에 안내된 변경 방식과 인증을 진행하고 결과를 확인해주세요.",
+  "priority": 100,
+  "availability": {
+    "mode": "action",
+    "label": "신청·변경",
+    "reviewedAt": "2026-10-14"
+  },
+  "$schema": "../feature.schema.json"
+}

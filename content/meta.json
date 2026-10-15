@@ -1,0 +1,14 @@
+{
+  "updated": "2026-10-14",
+  "homepage": "https://www.skylife.co.kr/Main",
+  "version": "2.0.0",
+  "guideUpdated": "2026-10-15",
+  "allowedHosts": [
+    "www.skylife.co.kr",
+    "corp.skylife.co.kr",
+    "skylifemoney.co.kr",
+    "genietvmobile.com",
+    "nqi.kt.com",
+    "qrco.de"
+  ]
+}

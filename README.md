@@ -1,27 +1,48 @@
-# CMS 상담사 인터뷰 사전자료 웹사이트
+# 스카이라이프 상담 가이드북 v2
 
-홈페이지 유입 상담과 CMS 상담업무 개선을 위한 상담사 인터뷰 사전자료입니다.
+고객이 말한 표현으로 홈페이지 기능을 찾고, 이용 조건과 조치 순서를 확인해 안내하는 정적 웹페이지입니다. 98개 기능·화면 예시를 유지하며 검색 의도 구분, 일치 근거, 자동완성, 조건 필터, 단계별 안내를 제공합니다.
 
-## 구성
+## 로컬 실행
 
-- `public/index.html`: 상담사 공유용 웹페이지
-- `public/assets/notion/`: Notion 기준지침에서 내려받은 업무 화면 캡처 이미지
-- `api/feedback.js`: 상담사 의견을 Notion 데이터베이스에 저장하는 Vercel Serverless Function
+Node.js 20 이상을 사용합니다. 외부 npm 의존성, 데이터베이스, 서버 API, 검색문장 전송이 없습니다.
 
-## Notion 의견 DB
+```sh
+npm ci --ignore-scripts
+npm run check
+npm run dev
+```
 
-- DB 이름: CMS 상담사 의견 수렴
-- DB ID: `396f46a3-8038-8168-8be6-e9f6423c71c0`
+미리보기는 `http://127.0.0.1:4180`에서 열립니다. `npm run build`는 검증된 파일만 `dist/`에 만듭니다. `dist/`는 수정하거나 커밋하지 않습니다.
 
-## Vercel 배포
+## 콘텐츠 업데이트
 
-1. GitHub 저장소 `skylifeaidx-design/interview1`를 Vercel에 Import합니다.
-2. 현재 GitHub 저장소에는 이 폴더의 내용이 저장소 루트에 올라가 있으므로, Vercel의 Root Directory는 비워두거나 `./`로 둡니다.
-   - Vercel Root Directory에 `cms-counselor-interview-site`를 입력하면 해당 경로가 저장소에 없어 빌드가 실패합니다.
-3. Vercel 환경변수에 다음 값을 등록합니다.
-   - `NOTION_TOKEN`
-   - `NOTION_DATABASE_ID=396f46a3-8038-8168-8be6-e9f6423c71c0`
-   - `NOTION_VERSION=2022-06-28`
-4. 배포 후 웹페이지에서 의견 저장 버튼을 눌러 Notion DB 저장을 확인합니다.
+- 기능 설명·대/중/소 분류·메뉴·단계·안내 문구: `content/features/<기능 ID>.json`
+- 동의어·고객 표현·검색 의도·미지원 처리 안내: `content/search-dictionary.json`
+- 확인 기준일·버전·링크 허용 도메인: `content/meta.json`
+- 검토·마스킹이 끝난 화면: `public/screens/`
+- UI: `src/index.html`, `src/styles.css`, `src/app.js`
+- 검색 엔진: `src/search.js`
 
-GitHub Pages는 정적 페이지 배포만 가능하므로, Notion 저장 기능까지 사용하려면 Vercel 배포가 필요합니다.
+기존 기능의 ID는 공유 링크가 있으므로 유지합니다. JSON 편집기는 `content/feature.schema.json`으로 입력 항목을 안내합니다. 기능 내용이나 캡처를 변경하면 `availability.reviewedAt`과 `screen.captured`를 실제 확인일로 갱신합니다. 예시 화면은 `screen.kind: source` 및 예시 데이터임을 밝히는 캡션을 유지합니다.
+
+## GitHub → Vercel
+
+전용 GitHub 저장소에서 PR을 만들면 `.github/workflows/quality.yml`이 콘텐츠 검증·검색 테스트·빌드를 실행합니다. Vercel의 Git 연결은 해당 저장소를 선택합니다. 프로젝트는 Framework Preset `Other`, Build Command `npm run build`, Output Directory `dist`를 사용하도록 `vercel.json`에 선언했습니다.
+
+권장 흐름은 브랜치에서 수정 → PR 검증 → Vercel Preview 확인 → 승인 후 main 병합 → Production 배포입니다. 실제 운영 브랜치와 연결 저장소는 Vercel 프로젝트 설정에서 확인한 값을 사용합니다. 기존 프로젝트에 다른 서비스가 있으면 Preview에서 검토한 뒤 적용합니다. `.gitlab-ci.yml`과 기존 홈페이지 배포·PM2 명령은 이 프로젝트에 포함하지 않습니다.
+
+지정된 대상은 GitHub `skylifeaidx-design/interview1`, Vercel `skylifeaidxs-projects / interview1`입니다. 기존 인터뷰 사이트는 `archive/interview-site-20261015` 브랜치에 보관합니다. 새 버전은 기존 의견 저장 서버 함수를 포함하지 않는 정적 가이드북입니다. 배포 성공과 공개 접속 여부는 실제 Vercel 결과로 확인합니다.
+
+## 공유 HTML
+
+빌드는 `dist/skylife-counselor-guide.html`도 생성합니다. 홈페이지에서는 다운로드 파일로 제공하고, 파일 자체에는 화면·글꼴·데이터·검색 코드가 내장됩니다. 오프라인 파일은 인라인 코드의 SHA-256만 허용하는 CSP를 포함합니다.
+
+파일에서 기능별 공개 링크를 복사하려면 빌드 환경의 `GUIDE_PUBLIC_URL`에 최종 웹주소를 설정합니다. Vercel에서는 제공된 프로젝트 운영 주소 또는 현재 배포 주소를 활용합니다. 로컬 빌드에 주소가 없으면 링크가 설정되지 않았음을 안내합니다. 실제 홈페이지를 여는 경우에는 인터넷 연결과 해당 기능의 로그인이 필요합니다.
+
+## 보안·검증
+
+배포 결과는 고정된 클라이언트 파일, 글꼴·로고, 기능 JSON이 참조하는 화면만 포함합니다. HTTPS 링크 허용 목록, 경로 경계, 필수 항목과 예시 구분을 검사하며 미참조 파일과 비밀 설정은 배포하지 않습니다. 웹에는 CSP·클릭재킹 방지·MIME 추측 방지·Referrer/Permissions Policy 헤더를 적용합니다. 검색어는 저장하거나 전송하지 않고 즐겨찾기·최근 기능 ID만 이 브라우저에 저장합니다.
+
+UI/UX 세 차례 검토는 `docs/UX-REVIEW.md`, 검색 설계와 테스트는 `docs/SEARCH.md`, 보안 검토는 `docs/SECURITY-REVIEW.md`에서 확인합니다.
+
+브라우저 검증은 선택 사항인 Playwright와 Edge로 `node execution/qa-ui.cjs`를 실행합니다. Playwright가 별도 경로에 설치되어 있으면 `PLAYWRIGHT_MODULE`로 지정합니다. 실행 중인 로컬 미리보기 또는 `GUIDE_TEST_URL`에 지정한 배포를 검사하고 결과는 `.tmp/ui-qa/`에 저장합니다. 이 도구는 운영 빌드에 포함되지 않습니다.

@@ -1,0 +1,50 @@
+{
+  "id": "f-8182c4be4c",
+  "title": "필요서류 안내",
+  "major": "문의·고객지원",
+  "middle": "서비스 안내",
+  "minor": "필요서류 안내",
+  "menu": [
+    "고객지원",
+    "서비스 안내",
+    "필요서류 안내"
+  ],
+  "url": "https://www.skylife.co.kr/center/info/document",
+  "route": "/center/info/document",
+  "summary": "신청 유형과 고객 조건에 맞는 필요서류를 확인합니다.",
+  "aliases": [
+    "구비서류",
+    "서류",
+    "명의변경",
+    "미성년자",
+    "법인 서류",
+    "해지 서류",
+    "가족 서류"
+  ],
+  "steps": [
+    "필요서류 안내 화면을 엽니다.",
+    "고객의 신청 유형과 해당 조건을 선택합니다.",
+    "필요서류와 제출 방식·유의사항을 확인합니다."
+  ],
+  "note": "서류 안내와 실제 신청 가능 여부는 다릅니다. 해당 업무의 접수 경로를 추가로 확인하세요.",
+  "login": false,
+  "product": "공통",
+  "action": "안내",
+  "external": false,
+  "sourceVerified": true,
+  "screen": {
+    "src": "screens/f-8182c4be4c.jpg",
+    "kind": "live",
+    "caption": "실제 홈페이지 화면 캡처",
+    "captured": "2026-10-14",
+    "url": "https://www.skylife.co.kr/center/info/document"
+  },
+  "script": "고객님, 스카이라이프 홈페이지에서 고객지원 → 서비스 안내 → 필요서류 안내 메뉴로 이동해주세요. 필요서류 안내 화면을 엽니다. 고객의 신청 유형과 해당 조건을 선택합니다. 필요서류와 제출 방식·유의사항을 확인합니다.",
+  "priority": 100,
+  "availability": {
+    "mode": "guide",
+    "label": "정보 안내",
+    "reviewedAt": "2026-10-14"
+  },
+  "$schema": "../feature.schema.json"
+}

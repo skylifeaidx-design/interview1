@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ko">
+<head>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width,initial-scale=1">
+ <meta name="description" content="고객의 표현으로 홈페이지 기능을 찾고 메뉴 경로, 조치 순서, 화면 예시를 안내하는 스카이라이프 상담사 가이드북.">
+ <meta name="theme-color" content="#087f63">
+ <title>스카이라이프 상담 가이드북</title>
+ <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+ <link rel="stylesheet" href="styles.css">
+ <script defer src="search.js"></script>
+ <script defer src="app.js"></script>
+</head>
+<body>
+ <a class="skip-link" href="#content">본문으로 이동</a>
+ <div id="menu-backdrop" class="menu-backdrop" hidden></div>
+ <aside class="sidebar" id="sidebar" aria-label="기능 분류">
+  <a class="brand" href="#content" data-home aria-label="상담 가이드북 홈"><img src="assets/logo.svg" alt="스카이라이프"><span>상담 가이드북 <span class="brand-label">COUNSELOR GUIDE</span></span></a>
+  <button id="mobile-menu-close" class="icon-button mobile-menu-close" aria-label="분류 메뉴 닫기">✕</button>
+  <div class="sidebar-section-label">나의 업무 바로가기</div>
+  <div class="personal-nav"><button data-view="saved"><span data-icon="bookmark"></span>즐겨찾기<span class="count" id="sidebar-saved-count">0</span></button><button data-view="recent"><span data-icon="clock"></span>최근 본 기능<span class="count" id="sidebar-recent-count">0</span></button></div>
+  <div class="sidebar-section-label">홈페이지 기능 분류</div>
+  <nav id="category-nav" aria-label="대분류 및 중분류"></nav>
+  <div class="sidebar-bottom"><span class="status-dot"></span>상담에 필요한 기능을 한곳에<p>화면 확인 기준 <time id="catalog-updated">2026.10.14</time></p><button id="about-button">가이드북 이용 안내 <span aria-hidden="true">↗</span></button></div>
+ </aside>
+ <div class="workspace">
+  <header class="topbar"><div class="topbar-start"><button id="mobile-menu" class="icon-button mobile-menu" aria-label="분류 메뉴 열기" aria-controls="sidebar" aria-expanded="false">☰</button><span class="topbar-title">상담 지원 <span aria-hidden="true">/</span> 홈페이지 기능 가이드</span></div><div class="topbar-links"><a id="download-html" href="skylife-counselor-guide.html" download="skylife-counselor-guide.html">HTML 저장 <span aria-hidden="true">↓</span></a><a href="https://www.skylife.co.kr/Main" target="_blank" rel="noopener noreferrer">홈페이지 <span aria-hidden="true">↗</span><span class="sr-only"> 새 창</span></a></div></header>
+  <main id="content">
+   <section class="intro" aria-labelledby="hero-title"><div><p class="eyebrow">SKYLIFE COUNSELOR WORKSPACE</p><h1 id="hero-title">고객의 질문, 바로 안내하세요.</h1><p>질문을 검색하면 홈페이지에서 확인할 메뉴와 조치 순서를 찾아드려요.</p></div><div class="intro-stat"><strong id="feature-count">98</strong><span>개의 홈페이지 기능</span></div></section>
+   <section class="search-workspace" aria-label="고객 질문 검색">
+    <div class="search-control"><form id="search-form" class="search-box" role="search"><span class="search-symbol" data-icon="search"></span><label class="sr-only" for="search">기능 또는 고객의 질문 검색</label><input id="search" type="search" maxlength="500" autocomplete="off" placeholder="예: 이사했는데 TV 설치 주소를 바꾸고 싶어요" role="combobox" aria-autocomplete="list" aria-controls="search-suggestions" aria-expanded="false" aria-describedby="search-help"><button id="clear-search" class="icon-button clear-search" type="button" aria-label="검색어 지우기" hidden>✕</button><kbd aria-hidden="true">Ctrl K</kbd><button class="search-submit" type="submit">검색</button></form><ul id="search-suggestions" class="search-suggestions" role="listbox" aria-label="검색어 추천" hidden></ul></div>
+    <div class="search-helper"><p id="search-help">고객이 쓰는 표현·초성·오타도 함께 검색합니다.</p><div class="quick-queries"><button data-query="미납요금">미납요금</button><button data-query="TV 안 나옴">TV 안 나옴</button><button data-query="데이터 남았어">데이터 잔여량</button><button data-query="비번">비밀번호</button></div></div>
+   </section>
+   <section class="scenario-section" id="scenario-section" aria-labelledby="scenario-title"><h2 id="scenario-title">자주 묻는 질문부터</h2><div class="scenario-grid"><button data-query="이사"><span class="scenario-icon" data-icon="home"></span><span><strong>이사·주소 변경</strong><small>이전설치와 신청 경로</small></span><span aria-hidden="true">↗</span></button><button data-query="요금"><span class="scenario-icon" data-icon="bill"></span><span><strong>요금 확인·납부</strong><small>청구금액과 납부 방법</small></span><span aria-hidden="true">↗</span></button><button data-query="TV 안 나옴"><span class="scenario-icon" data-icon="tool"></span><span><strong>TV·인터넷 장애</strong><small>자가진단부터 A/S 안내</small></span><span aria-hidden="true">↗</span></button><button data-query="개통"><span class="scenario-icon" data-icon="phone"></span><span><strong>가입·개통</strong><small>상품과 개통 절차 확인</small></span><span aria-hidden="true">↗</span></button></div></section>
+   <section class="library" aria-labelledby="list-title">
+    <div class="library-heading"><div><p class="eyebrow">기능 라이브러리</p><h2 id="list-title">전체 기능 <span id="total-count">98</span></h2></div><div class="tabs" role="tablist" aria-label="기능 목록 보기"><button id="tab-all" role="tab" data-view="all" aria-selected="true" aria-controls="cards" tabindex="0">전체</button><button id="tab-saved" role="tab" data-view="saved" aria-selected="false" aria-controls="cards" tabindex="-1">즐겨찾기 <span id="saved-count">0</span></button><button id="tab-recent" role="tab" data-view="recent" aria-selected="false" aria-controls="cards" tabindex="-1">최근 본 기능</button></div></div>
+    <div class="purpose-row"><span>문의 목적</span><div id="purpose-filters" class="purpose-filters" role="group" aria-label="문의 목적별 필터"></div></div>
+    <div class="filter-panel"><div class="filter-fields"><label><span>중분류</span><select id="middle-filter"><option value="">전체 중분류</option></select></label><label><span>소분류</span><select id="minor-filter"><option value="">전체 소분류</option></select></label><label><span>대상 상품</span><select id="product-filter"><option value="">모든 상품</option><option>TV</option><option>인터넷</option><option>모바일</option><option>TV·인터넷</option><option>공통</option><option>사업자</option></select></label><label><span>인증 조건</span><select id="login-filter"><option value="">모든 조건</option><option value="required">로그인 필요</option><option value="public">로그인 외 진입</option></select></label><label><span>처리 유형</span><select id="availability-filter"><option value="">모든 처리 유형</option><option value="action">신청·변경</option><option value="lookup">조회</option><option value="guide">정보 안내</option><option value="external">외부 서비스</option></select></label></div><button id="reset" class="reset-button"><span aria-hidden="true">↺</span> 초기화</button></div>
+    <div id="active-filters" class="active-filters" aria-label="현재 적용한 필터"></div>
+    <div class="results-info"><p id="result-summary" role="status" aria-live="polite"></p><label class="sort-control"><span class="sr-only">정렬 방식</span><select id="sort"><option value="recommended">추천순</option><option value="name">이름순</option><option value="category">분류순</option></select></label></div>
+    <div id="search-context" class="search-context" hidden></div>
+    <div id="cards" class="cards" role="tabpanel" aria-labelledby="tab-all" aria-busy="true"><div class="loading-state"><span class="loading-dot"></span>기능과 화면 안내를 준비하고 있어요.</div></div>
+    <div id="empty-state" class="empty-state" hidden></div>
+   </section>
+   <footer class="footer"><span><b>kt skylife</b> 상담 가이드북</span><p>메뉴·요금·이용 가능 여부는 현재 홈페이지에서 최종 확인해주세요.</p><button id="footer-about">이용 안내 ↗</button></footer>
+  </main>
+ </div>
+ <dialog id="guide-dialog" class="guide-dialog" aria-labelledby="guide-title"><div id="guide-body"></div></dialog>
+ <dialog id="image-dialog" class="image-dialog" aria-labelledby="zoom-title"><div class="image-toolbar"><h2 id="zoom-title">화면 전체 보기</h2><div><button id="zoom-fit" aria-pressed="false">원본 크기</button><button id="zoom-close" class="icon-button" aria-label="화면 확대 닫기">✕</button></div></div><div id="zoom-frame" class="zoom-frame"><img id="zoom-image" alt=""></div><p id="zoom-caption"></p></dialog>
+ <dialog id="about-dialog" class="about-dialog" aria-labelledby="about-title"><button id="about-close" class="icon-button about-close" aria-label="이용 안내 닫기">✕</button><p class="eyebrow">GUIDEBOOK HELP</p><h2 id="about-title">상담 중, 이렇게 활용하세요.</h2><h3>질문을 입력하고 결과를 비교하세요</h3><p>고객이 쓰는 표현이나 짧은 문장으로 검색하세요. 초성·유사어·가벼운 오타를 함께 찾으며, 검색 결과에 연결된 이유를 표시합니다. 자동완성은 방향키로 고른 뒤 Enter로 검색할 수 있습니다.</p><h3>처리 유형과 인증 조건을 먼저 확인하세요</h3><p>‘신청·변경’, ‘조회’, ‘정보 안내’, ‘외부 서비스’는 메뉴의 목적을 구분합니다. 고객의 계약과 가입상품에 따른 실제 이용 가능 여부는 홈페이지 로그인 후 확인해야 합니다. 가이드북에서 고객 업무를 직접 처리하지 않습니다.</p><h3>메뉴 경로와 조치 순서를 안내하세요</h3><p>기능을 열면 안내 전 확인사항, 메뉴 경로, 고객 조치 순서와 복사할 안내 문구를 볼 수 있습니다. ‘홈페이지 바로가기’는 해당 메뉴를 새 창에서 엽니다. ‘가이드 링크 복사’는 상담 가이드의 직접 링크입니다.</p><h3>캡처의 종류를 구분하세요</h3><p>공개 화면은 실제 화면 캡처, 인증 후 화면은 개인정보를 가린 테스트 계정 캡처입니다. 청구요금 화면은 실제 화면 소스와 가상 데이터를 사용한 예시로 별도 표시합니다. 화면 확인 기준일 이후 메뉴가 달라질 수 있습니다.</p><h3>반복 안내할 기능은 저장하세요</h3><p>즐겨찾기와 최근 본 기능은 현재 브라우저에만 저장됩니다. 다른 사람과 자동으로 공유되지 않습니다. 고객정보나 계정정보를 입력할 필요가 없습니다. <kbd>/</kbd> 또는 <kbd>Ctrl K</kbd>로 검색창으로 이동하고, <kbd>Esc</kbd>로 상세·확대 화면을 닫을 수 있습니다.</p><h3>HTML 파일로 공유하기</h3><p>‘HTML 저장’으로 받은 파일에는 기능과 화면 이미지가 포함됩니다. 파일을 전달하거나 정적 웹 호스팅에 올려 사용할 수 있습니다. 배포된 주소로 열면 기능별 직접 링크를 공유할 수 있습니다.</p></dialog>
+ <div id="toast" class="toast" role="status" aria-live="polite"></div>
+ <noscript><p class="noscript-note">가이드북의 검색과 기능 안내를 이용하려면 브라우저에서 JavaScript를 허용해주세요.</p></noscript>
+</body>
+</html>

@@ -1,0 +1,48 @@
+{
+  "id": "f-b2fc16234d",
+  "title": "셀프가입 내역",
+  "major": "이용·변경",
+  "middle": "가입 조회",
+  "minor": "셀프가입 내역",
+  "menu": [
+    "마이",
+    "셀프가입 내역"
+  ],
+  "url": "https://www.skylife.co.kr/my/self/info",
+  "route": "/my/self/info",
+  "summary": "홈페이지에서 신청한 셀프가입의 진행 상태와 신청 내역을 확인합니다.",
+  "aliases": [
+    "신청 확인",
+    "가입 진행",
+    "접수 확인",
+    "개통 상태",
+    "주문 조회",
+    "셀프가입 조회"
+  ],
+  "steps": [
+    "셀프가입 내역 화면을 엽니다.",
+    "화면에서 안내하는 신청내역 조회 인증을 진행합니다.",
+    "신청 건을 선택해 접수 내용과 진행 상태를 확인합니다."
+  ],
+  "note": "회원 로그인이 아닌 별도의 신청자 확인 절차가 제공될 수 있습니다. 기존 가입정보 조회와 구분하세요.",
+  "login": false,
+  "product": "공통",
+  "action": "조회",
+  "external": false,
+  "sourceVerified": true,
+  "screen": {
+    "src": "screens/f-b2fc16234d.jpg",
+    "kind": "live",
+    "caption": "실제 홈페이지 화면 캡처",
+    "captured": "2026-10-14",
+    "url": "https://www.skylife.co.kr/my/self/identity"
+  },
+  "script": "고객님, 스카이라이프 홈페이지에서 마이 → 셀프가입 내역 메뉴로 이동해주세요. 셀프가입 내역 화면을 엽니다. 화면에서 안내하는 신청내역 조회 인증을 진행합니다. 신청 건을 선택해 접수 내용과 진행 상태를 확인합니다.",
+  "priority": 100,
+  "availability": {
+    "mode": "lookup",
+    "label": "조회",
+    "reviewedAt": "2026-10-14"
+  },
+  "$schema": "../feature.schema.json"
+}
