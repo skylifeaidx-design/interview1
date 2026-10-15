@@ -41,6 +41,8 @@ npm run dev
 
 초기 가이드북 전환 이력은 [PR #1](https://github.com/skylifeaidx-design/interview1/pull/1)에 있습니다. HTML 저장 기능은 후속 요청에 따라 제거했습니다. 신규 공유 기능의 검증은 질문·답변 CRUD, 작성자 권한, 동시 저장, 검색과 실제 브라우저 동작을 포함합니다.
 
+2026-10-15 QnA 운영 검증을 완료했습니다. 자동 테스트 155개와 빌드가 통과했고, 공개 운영 주소에서 기존 가이드 74개·두 독립 브라우저의 실제 공유 QnA 38개 항목이 통과했습니다. 질문·답변 등록, 본문 검색, 본인 수정·삭제와 타인 수정 차단을 확인했습니다. 테스트 글은 삭제했으며, 검증 중 사용한 한시적 정리 코드는 제거했습니다. 기능 추가는 [PR #2](https://github.com/skylifeaidx-design/interview1/pull/2), 실제 Vercel 인증·전송 버전 비교 보완은 PR #3·#4에 기록했습니다.
+
 ## 공유
 
 운영 주소를 공유하거나 상세 안내의 ‘가이드 링크 복사’로 특정 기능을 공유합니다. HTML 저장 버튼과 단일 HTML 파일 생성·다운로드는 제거했습니다.
@@ -52,3 +54,5 @@ npm run dev
 UI/UX 세 차례 검토는 `docs/UX-REVIEW.md`, 검색 설계와 테스트는 `docs/SEARCH.md`, 보안 검토는 `docs/SECURITY-REVIEW.md`에서 확인합니다.
 
 브라우저 검증은 선택 사항인 Playwright와 Edge로 `node execution/qa-ui.cjs`를 실행합니다. Playwright가 별도 경로에 설치되어 있으면 `PLAYWRIGHT_MODULE`로 지정합니다. 실행 중인 로컬 미리보기 또는 `GUIDE_TEST_URL`에 지정한 배포를 검사하고 결과는 `.tmp/ui-qa/`에 저장합니다. 이 도구는 운영 빌드에 포함되지 않습니다.
+
+공유 QnA 브라우저 검증은 `node execution/qa-qna.cjs`입니다. 서로 다른 두 브라우저의 실제 공유 API에 **QA로 표시한 임시 질문·답변을 생성하고 본인 글만 삭제**하므로, 쓰기 검증이 허용된 대상에서 실행합니다. 기본 주소는 명시적 메모리 미리보기 `http://127.0.0.1:4190/`이며 배포 주소는 `GUIDE_TEST_URL`로 지정합니다. 결과에는 소유키·질문/답변 본문을 기록하지 않습니다.
