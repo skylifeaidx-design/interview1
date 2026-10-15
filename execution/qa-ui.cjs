@@ -13,7 +13,7 @@ const fixture=JSON.parse(fs.readFileSync(path.join(project,'dist','data.json'),'
 const ids=new Set(fixture.features.map(f=>f.id));
 
 (async()=>{
- let browser,page,phase='web';
+ let browser,page,phase='web',offlineFile=path.join(project,'dist','skylife-counselor-guide.html');
  const results=[],errors=[],cspErrors=[],blocked=[],requests=[],fileRequests=[];
  const assert=(condition,name,detail)=>{results.push({name,pass:!!condition,...(detail===undefined?{}:{detail})});if(!condition)throw Error(name);};
  const check=async(name,run)=>{try{await run();}catch(error){if(!results.length||results.at(-1).pass)results.push({name,pass:false,detail:error.message});}};
@@ -147,9 +147,10 @@ const ids=new Set(fixture.features.map(f=>f.id));
    assert(download.suggestedFilename()==='skylife-counselor-guide.html','다운로드 파일명');
    const file=await download.path();assert(fs.statSync(file).size>1000000,'화면·데이터가 포함된 실제 HTML 다운로드');
    assert(fs.readFileSync(file,'utf8').includes('id="guide-data"'),'다운로드 파일에 카탈로그 내장');
+   offlineFile=path.join(artifact,'skylife-counselor-guide.html');await download.saveAs(offlineFile);
   });
   await check('독립 HTML 오프라인 실행',async()=>{
-   phase='file';const file=path.join(project,'dist','skylife-counselor-guide.html');await page.goto(pathToFileURL(file).href,{waitUntil:'load'});await page.locator('.card').first().waitFor({timeout:20000});
+   phase='file';const file=offlineFile;await page.goto(pathToFileURL(file).href,{waitUntil:'load'});await page.locator('.card').first().waitFor({timeout:20000});
    assert(await page.locator('.card').count()===98,'file:// 98개 목록');
    assert(await page.locator('#guide-data').evaluate(n=>JSON.parse(n.textContent).features.every(f=>f.screen?.kind==='unavailable'||f.screen?.src?.startsWith('data:image/'))),'file:// 전체 98개 화면 데이터 내장');
    await search('이사했는데 TV 설치 주소를 바꾸고 싶어요');assert((await titles()).includes('설치주소 변경 신청'),'file:// 자연어 검색');

@@ -1,5 +1,7 @@
 # 스카이라이프 상담 가이드북 v2
 
+**운영 가이드북:** https://interview1-chi.vercel.app/ · **[공유 HTML 다운로드](https://interview1-chi.vercel.app/skylife-counselor-guide.html)**
+
 고객이 말한 표현으로 홈페이지 기능을 찾고, 이용 조건과 조치 순서를 확인해 안내하는 정적 웹페이지입니다. 98개 기능·화면 예시를 유지하며 검색 의도 구분, 일치 근거, 자동완성, 조건 필터, 단계별 안내를 제공합니다.
 
 ## 로컬 실행
@@ -32,6 +34,8 @@ npm run dev
 권장 흐름은 브랜치에서 수정 → PR 검증 → Vercel Preview 확인 → 승인 후 main 병합 → Production 배포입니다. 실제 운영 브랜치와 연결 저장소는 Vercel 프로젝트 설정에서 확인한 값을 사용합니다. 기존 프로젝트에 다른 서비스가 있으면 Preview에서 검토한 뒤 적용합니다. `.gitlab-ci.yml`과 기존 홈페이지 배포·PM2 명령은 이 프로젝트에 포함하지 않습니다.
 
 지정된 대상은 GitHub `skylifeaidx-design/interview1`, Vercel `skylifeaidxs-projects / interview1`입니다. 기존 인터뷰 사이트는 `archive/interview-site-20261015` 브랜치에 보관합니다. 새 버전은 기존 의견 저장 서버 함수를 포함하지 않는 정적 가이드북입니다. 배포 성공과 공개 접속 여부는 실제 Vercel 결과로 확인합니다.
+
+2026-10-15 운영 배포를 확인했습니다. GitHub 자동검사 103개와 운영 주소의 실제 브라우저 검증 82개가 통과했습니다. 로그인 없는 접속, HTML 다운로드·오프라인 실행·공개 주소 공유, 기존 `/api/feedback`의 404 응답을 확인했습니다. 구현 전환 이력은 [PR #1](https://github.com/skylifeaidx-design/interview1/pull/1)에 있습니다.
 
 ## 공유 HTML
 
