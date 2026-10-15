@@ -20,7 +20,7 @@ test('연결된 store ID만 있어도 요청별 OIDC 인증 판정을 SDK에 맡
   const store = createBlobStore({ env: { BLOB_STORE_ID: 'store_unit-test-only' },
     loadSdk: async () => { loads++; return { get: async (pathname, options) => {
       assert.equal(pathname, PATHNAME);
-      assert.deepEqual(options, { access: 'private', useCache: false });
+      assert.deepEqual(options, { access: 'private', useCache: false, headers: { 'accept-encoding': 'identity' } });
       return null;
     } }; } });
   assert.equal(store.configured(), true);
@@ -36,7 +36,7 @@ test('Blob adapter는 private 원본 읽기와 ETag를 보존하고 인증정보
   assert.equal(store.configured(), true); assert.equal(loads, 0);
   const result = await store.read();
   assert.equal(result.etag, '"quoted-etag"'); assert.deepEqual(result.value, { schemaVersion: 1 });
-  assert.deepEqual(calls, [[PATHNAME, { access: 'private', useCache: false }]]);
+  assert.deepEqual(calls, [[PATHNAME, { access: 'private', useCache: false, headers: { 'accept-encoding': 'identity' } }]]);
   assert.equal(loads, 1); assert(!JSON.stringify(calls).includes(env.BLOB_READ_WRITE_TOKEN));
 });
 
@@ -51,6 +51,17 @@ test('최초 생성은 덮어쓰지 않고 갱신은 읽은 ETag로만 허용한
   assert.equal(calls[1][2].allowOverwrite, true); assert.equal(calls[1][2].ifMatch, '"v1"');
   await assert.rejects(store.write({ value: 3 }, {}));
   assert.equal(calls.length, 2);
+});
+
+test('압축 표현의 weak ETag는 원본 버전으로 간주하거나 임의로 보정하지 않는다', async () => {
+  for (const etag of ['W/"compressed"', '']) {
+    const held = deferredStream(['{}']);
+    const store = createBlobStore({ env, loadSdk: async () => ({ get: async () => ({
+      statusCode: 200, stream: held.stream, blob: { size: 2, etag },
+    }) }) });
+    await assert.rejects(store.read(), code('STORAGE_ETAG_INVALID'));
+    assert.equal(held.wasCancelled(), true);
+  }
 });
 
 test('미설정 어댑터의 읽기·쓰기 모두 SDK 로드와 네트워크 호출 이전에 실패한다', async () => {
