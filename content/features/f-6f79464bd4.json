@@ -1,0 +1,48 @@
+{
+  "id": "f-6f79464bd4",
+  "title": "TV 서비스 원격지원",
+  "major": "장애·A/S",
+  "middle": "고장 해결",
+  "minor": "TV 서비스 원격지원",
+  "menu": [
+    "고객지원",
+    "고장진단 및 A/S 신청",
+    "TV 서비스 원격지원"
+  ],
+  "url": "https://www.skylife.co.kr/center/consult/Remote01",
+  "route": "/center/consult/Remote01",
+  "summary": "로그인 후 TV 서비스 원격지원 안내와 제공되는 지원 절차를 확인합니다.",
+  "aliases": [
+    "원격지원",
+    "원격 점검",
+    "TV 원격",
+    "셋톱 원격",
+    "원격 조치"
+  ],
+  "steps": [
+    "로그인 후 TV 서비스 원격지원 화면을 엽니다.",
+    "안내된 지원 대상과 준비사항을 확인합니다.",
+    "화면에서 제공하는 지원 절차를 진행합니다."
+  ],
+  "note": "원격지원 가능 여부와 지원 방식은 현재 화면을 확인하세요.",
+  "login": true,
+  "product": "TV",
+  "action": "안내",
+  "external": false,
+  "sourceVerified": true,
+  "screen": {
+    "src": "screens/f-6f79464bd4-authenticated.jpg",
+    "kind": "authenticated",
+    "caption": "테스트 계정으로 확인한 실제 기능 화면 · 숫자·연락처 등 고객 정보를 가려 캡처했습니다.",
+    "captured": "2026-10-14",
+    "url": "https://www.skylife.co.kr/center/consult/Remote01"
+  },
+  "script": "고객님, 스카이라이프 홈페이지에서 로그인하신 뒤 고객지원 → 고장진단 및 A/S 신청 → TV 서비스 원격지원 메뉴로 이동해주세요. 로그인 후 TV 서비스 원격지원 화면을 엽니다. 안내된 지원 대상과 준비사항을 확인합니다. 화면에서 제공하는 지원 절차를 진행합니다.",
+  "priority": 100,
+  "availability": {
+    "mode": "action",
+    "label": "신청·변경",
+    "reviewedAt": "2026-10-14"
+  },
+  "$schema": "../feature.schema.json"
+}

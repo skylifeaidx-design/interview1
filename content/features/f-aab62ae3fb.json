@@ -1,0 +1,49 @@
+{
+  "id": "f-aab62ae3fb",
+  "title": "매장 안내",
+  "major": "문의·고객지원",
+  "middle": "서비스 안내",
+  "minor": "매장 안내",
+  "menu": [
+    "고객지원",
+    "서비스 안내",
+    "매장 안내"
+  ],
+  "url": "https://www.skylife.co.kr/center/info/mobilestore",
+  "route": "/center/info/mobilestore",
+  "summary": "유심 등을 취급하는 매장과 방문 정보를 확인합니다.",
+  "aliases": [
+    "매장 찾기",
+    "가까운 매장",
+    "대리점",
+    "유심 어디",
+    "편의점",
+    "방문 구매"
+  ],
+  "steps": [
+    "매장 안내 화면을 엽니다.",
+    "지역 또는 취급 유형에 맞는 매장을 찾습니다.",
+    "주소와 이용 정보를 확인합니다."
+  ],
+  "note": "취급 상품과 재고·운영 여부는 방문 전 해당 매장에 확인하세요.",
+  "login": false,
+  "product": "모바일",
+  "action": "안내",
+  "external": false,
+  "sourceVerified": true,
+  "screen": {
+    "src": "screens/f-aab62ae3fb.jpg",
+    "kind": "live",
+    "caption": "실제 홈페이지 화면 캡처",
+    "captured": "2026-10-14",
+    "url": "https://www.skylife.co.kr/center/info/mobilestore"
+  },
+  "script": "고객님, 스카이라이프 홈페이지에서 고객지원 → 서비스 안내 → 매장 안내 메뉴로 이동해주세요. 매장 안내 화면을 엽니다. 지역 또는 취급 유형에 맞는 매장을 찾습니다. 주소와 이용 정보를 확인합니다.",
+  "priority": 100,
+  "availability": {
+    "mode": "guide",
+    "label": "정보 안내",
+    "reviewedAt": "2026-10-14"
+  },
+  "$schema": "../feature.schema.json"
+}

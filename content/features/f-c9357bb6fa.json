@@ -1,0 +1,50 @@
+{
+  "id": "f-c9357bb6fa",
+  "title": "설치주소 변경 신청",
+  "major": "이용·변경",
+  "middle": "이전설치",
+  "minor": "설치주소 변경 신청",
+  "menu": [
+    "고객지원",
+    "고장진단 및 A/S 신청",
+    "설치주소 변경 신청"
+  ],
+  "url": "https://www.skylife.co.kr/center/consult/relocation/request",
+  "route": "/center/consult/relocation/request",
+  "summary": "이사 등으로 TV·인터넷의 설치 장소가 바뀔 때 이전설치를 신청합니다.",
+  "aliases": [
+    "이사",
+    "이전설치",
+    "주소 변경",
+    "이전 설치",
+    "설치 옮기기",
+    "집 옮겨",
+    "이사 신청"
+  ],
+  "steps": [
+    "로그인 후 이전할 가입상품을 선택합니다.",
+    "새 설치주소와 연락처를 입력하고 설치 가능 여부를 확인합니다.",
+    "화면에서 제공하는 일정을 선택하고 신청 결과를 확인합니다."
+  ],
+  "note": "회원정보 주소 변경과 다릅니다. 설치 가능 여부·이전 비용·일정은 신청 화면을 확인하세요.",
+  "login": true,
+  "product": "TV·인터넷",
+  "action": "변경",
+  "external": false,
+  "sourceVerified": true,
+  "screen": {
+    "src": "screens/f-c9357bb6fa-authenticated.jpg",
+    "kind": "authenticated",
+    "caption": "테스트 계정으로 확인한 실제 기능 화면 · 숫자·연락처 등 고객 정보를 가려 캡처했습니다.",
+    "captured": "2026-10-14",
+    "url": "https://www.skylife.co.kr/center/consult/relocation/request"
+  },
+  "script": "고객님, 스카이라이프 홈페이지에서 로그인하신 뒤 고객지원 → 고장진단 및 A/S 신청 → 설치주소 변경 신청 메뉴로 이동해주세요. 로그인 후 이전할 가입상품을 선택합니다. 새 설치주소와 연락처를 입력하고 설치 가능 여부를 확인합니다. 화면에서 제공하는 일정을 선택하고 신청 결과를 확인합니다.",
+  "priority": 4,
+  "availability": {
+    "mode": "action",
+    "label": "신청·변경",
+    "reviewedAt": "2026-10-14"
+  },
+  "$schema": "../feature.schema.json"
+}

@@ -1,0 +1,48 @@
+{
+  "id": "f-c01baf5ba1",
+  "title": "모바일 쿠폰 등록",
+  "major": "이용·변경",
+  "middle": "모바일",
+  "minor": "모바일 쿠폰 등록",
+  "menu": [
+    "마이",
+    "모바일",
+    "모바일 쿠폰 등록"
+  ],
+  "url": "https://www.skylife.co.kr/my/mobile/coupon",
+  "route": "/my/mobile/coupon",
+  "summary": "모바일 쿠폰 번호를 입력해 등록합니다.",
+  "aliases": [
+    "데이터 쿠폰",
+    "쿠폰번호",
+    "쿠폰 쓰기",
+    "쿠폰등록",
+    "쿠폰 충전"
+  ],
+  "steps": [
+    "쿠폰을 적용할 모바일 회선을 확인합니다.",
+    "쿠폰번호를 입력합니다.",
+    "등록 결과와 적용 내역을 확인합니다."
+  ],
+  "note": "쿠폰의 유효기간·적용 가능한 회선·중복 사용 여부는 화면 안내를 확인하세요.",
+  "login": true,
+  "product": "모바일",
+  "action": "등록",
+  "external": false,
+  "sourceVerified": true,
+  "screen": {
+    "src": "screens/f-c01baf5ba1-authenticated.jpg",
+    "kind": "authenticated",
+    "caption": "테스트 계정으로 확인한 실제 기능 화면 · 고객 식별정보와 개인 조회내역을 가려 캡처했습니다.",
+    "captured": "2026-10-14",
+    "url": "https://www.skylife.co.kr/my/mobile/coupon"
+  },
+  "script": "고객님, 스카이라이프 홈페이지에서 로그인하신 뒤 마이 → 모바일 → 모바일 쿠폰 등록 메뉴로 이동해주세요. 쿠폰을 적용할 모바일 회선을 확인합니다. 쿠폰번호를 입력합니다. 등록 결과와 적용 내역을 확인합니다.",
+  "priority": 100,
+  "availability": {
+    "mode": "action",
+    "label": "신청·변경",
+    "reviewedAt": "2026-10-14"
+  },
+  "$schema": "../feature.schema.json"
+}

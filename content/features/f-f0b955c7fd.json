@@ -1,0 +1,51 @@
+{
+  "id": "f-f0b955c7fd",
+  "title": "자주 찾는 질문",
+  "major": "문의·고객지원",
+  "middle": "문의하기",
+  "minor": "자주 찾는 질문",
+  "menu": [
+    "고객지원",
+    "문의하기",
+    "자주 찾는 질문"
+  ],
+  "url": "https://www.skylife.co.kr/center/consult/FAQ",
+  "route": "/center/consult/FAQ",
+  "summary": "상품과 문의 주제에 맞는 자주 찾는 질문을 검색합니다.",
+  "aliases": [
+    "FAQ",
+    "자주묻는질문",
+    "궁금해",
+    "해지 방법",
+    "명의 변경",
+    "명의변경",
+    "약정",
+    "위약금"
+  ],
+  "steps": [
+    "문의 주제와 관련된 상품 또는 분류를 선택합니다.",
+    "고객이 문의한 핵심 용어를 검색합니다.",
+    "질문을 열고 답변에 있는 처리 경로와 조건을 확인합니다."
+  ],
+  "note": "FAQ에 설명되어 있어도 홈페이지에서 직접 처리할 수 있다는 의미는 아닙니다. 실제 안내된 신청 경로를 확인하세요.",
+  "login": false,
+  "product": "공통",
+  "action": "안내",
+  "external": false,
+  "sourceVerified": true,
+  "screen": {
+    "src": "screens/f-f0b955c7fd.jpg",
+    "kind": "live",
+    "caption": "실제 홈페이지 화면 캡처",
+    "captured": "2026-10-14",
+    "url": "https://www.skylife.co.kr/center/consult/FAQ"
+  },
+  "script": "고객님, 스카이라이프 홈페이지에서 고객지원 → 문의하기 → 자주 찾는 질문 메뉴로 이동해주세요. 문의 주제와 관련된 상품 또는 분류를 선택합니다. 고객이 문의한 핵심 용어를 검색합니다. 질문을 열고 답변에 있는 처리 경로와 조건을 확인합니다.",
+  "priority": 100,
+  "availability": {
+    "mode": "guide",
+    "label": "정보 안내",
+    "reviewedAt": "2026-10-14"
+  },
+  "$schema": "../feature.schema.json"
+}

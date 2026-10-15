@@ -1,0 +1,49 @@
+{
+  "id": "f-23a800ef5a",
+  "title": "청구요금 조회",
+  "major": "요금·납부",
+  "middle": "요금 조회",
+  "minor": "청구요금 조회",
+  "menu": [
+    "마이",
+    "요금",
+    "청구요금 조회"
+  ],
+  "url": "https://www.skylife.co.kr/my/charge/bill/inquiry",
+  "route": "/my/charge/bill/inquiry",
+  "summary": "이번 달 청구금액과 청구 상세 내역을 확인합니다.",
+  "aliases": [
+    "이번달 요금",
+    "얼마 나왔어",
+    "청구서",
+    "명세서",
+    "요금이 많이",
+    "요금 확인",
+    "통신비"
+  ],
+  "steps": [
+    "조회할 가입상품 또는 청구계정을 선택합니다.",
+    "조회할 청구월을 선택합니다.",
+    "청구금액과 항목별 상세 내역을 확인합니다."
+  ],
+  "note": "조회 월과 상품이 맞는지 먼저 확인하세요. 청구요금과 실시간 이용요금은 다른 화면입니다.",
+  "login": true,
+  "product": "공통",
+  "action": "조회",
+  "external": false,
+  "sourceVerified": true,
+  "screen": {
+    "src": "screens/source-bill.jpg",
+    "kind": "source",
+    "caption": "실제 홈페이지 화면 코드를 브라우저에서 렌더링한 예시입니다. 금액·고객정보는 가상의 데이터이며 실제 청구내역이 아닙니다.",
+    "captured": "2026-10-14"
+  },
+  "script": "고객님, 스카이라이프 홈페이지에서 로그인하신 뒤 마이 → 요금 → 청구요금 조회 메뉴로 이동해주세요. 조회할 가입상품 또는 청구계정을 선택합니다. 조회할 청구월을 선택합니다. 청구금액과 항목별 상세 내역을 확인합니다.",
+  "priority": 0,
+  "availability": {
+    "mode": "lookup",
+    "label": "조회",
+    "reviewedAt": "2026-10-14"
+  },
+  "$schema": "../feature.schema.json"
+}

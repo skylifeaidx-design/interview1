@@ -1,0 +1,52 @@
+{
+  "id": "f-1312952d4e",
+  "title": "A/S 자가진단",
+  "major": "장애·A/S",
+  "middle": "고장 해결",
+  "minor": "A/S 자가진단",
+  "menu": [
+    "고객지원",
+    "고장진단 및 A/S 신청",
+    "A/S 자가진단"
+  ],
+  "url": "https://www.skylife.co.kr/center/consult/selfcheck",
+  "route": "/center/consult/selfcheck",
+  "summary": "TV·인터넷의 증상을 선택해 점검 방법을 확인합니다.",
+  "aliases": [
+    "TV 안 나옴",
+    "티비 안 나와",
+    "화면 검정",
+    "신호 없음",
+    "소리 안 나옴",
+    "인터넷 안됨",
+    "와이파이 끊김",
+    "고장",
+    "자가진단"
+  ],
+  "steps": [
+    "고장이 발생한 상품을 선택합니다.",
+    "화면·소리·연결 등 해당 증상을 선택합니다.",
+    "안내된 점검 방법을 순서대로 확인하고 해결 여부를 확인합니다."
+  ],
+  "note": "자가진단으로 해결되지 않으면 A/S 신청 기능을 안내하세요.",
+  "login": false,
+  "product": "공통",
+  "action": "안내",
+  "external": false,
+  "sourceVerified": true,
+  "screen": {
+    "src": "screens/f-1312952d4e.jpg",
+    "kind": "live",
+    "caption": "실제 홈페이지 화면 캡처",
+    "captured": "2026-10-14",
+    "url": "https://www.skylife.co.kr/center/consult/selfcheck"
+  },
+  "script": "고객님, 스카이라이프 홈페이지에서 고객지원 → 고장진단 및 A/S 신청 → A/S 자가진단 메뉴로 이동해주세요. 고장이 발생한 상품을 선택합니다. 화면·소리·연결 등 해당 증상을 선택합니다. 안내된 점검 방법을 순서대로 확인하고 해결 여부를 확인합니다.",
+  "priority": 3,
+  "availability": {
+    "mode": "guide",
+    "label": "정보 안내",
+    "reviewedAt": "2026-10-14"
+  },
+  "$schema": "../feature.schema.json"
+}

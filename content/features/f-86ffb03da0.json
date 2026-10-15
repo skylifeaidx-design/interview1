@@ -1,0 +1,50 @@
+{
+  "id": "f-86ffb03da0",
+  "title": "회원 로그인",
+  "major": "회원·계정",
+  "middle": "로그인",
+  "minor": "회원 로그인",
+  "menu": [
+    "회원·계정",
+    "로그인",
+    "회원 로그인"
+  ],
+  "url": "https://www.skylife.co.kr/member/login",
+  "route": "/member/login",
+  "summary": "아이디 또는 화면에서 제공하는 간편인증 방식으로 로그인합니다.",
+  "aliases": [
+    "로그인 안됨",
+    "로그인 방법",
+    "접속",
+    "간편 로그인",
+    "카카오 로그인",
+    "네이버 로그인",
+    "PASS"
+  ],
+  "steps": [
+    "로그인 화면을 엽니다.",
+    "고객이 사용하는 로그인 방식을 선택합니다.",
+    "인증을 완료하고 안내할 메뉴로 다시 이동합니다."
+  ],
+  "note": "인증 오류가 나면 선택한 로그인 방식과 회원 가입 여부를 확인하세요.",
+  "login": false,
+  "product": "공통",
+  "action": "안내",
+  "external": false,
+  "sourceVerified": true,
+  "screen": {
+    "src": "screens/f-86ffb03da0.jpg",
+    "kind": "login",
+    "caption": "실제 홈페이지 로그인 진입 화면",
+    "captured": "2026-10-14",
+    "url": "https://www.skylife.co.kr/member/login"
+  },
+  "script": "고객님, 스카이라이프 홈페이지에서 회원·계정 → 로그인 → 회원 로그인 메뉴로 이동해주세요. 로그인 화면을 엽니다. 고객이 사용하는 로그인 방식을 선택합니다. 인증을 완료하고 안내할 메뉴로 다시 이동합니다.",
+  "priority": 7,
+  "availability": {
+    "mode": "action",
+    "label": "신청·변경",
+    "reviewedAt": "2026-10-14"
+  },
+  "$schema": "../feature.schema.json"
+}

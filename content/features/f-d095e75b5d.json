@@ -1,0 +1,50 @@
+{
+  "id": "f-d095e75b5d",
+  "title": "인터넷 요금제 안내",
+  "major": "가입·상품",
+  "middle": "인터넷",
+  "minor": "인터넷 요금제 안내",
+  "menu": [
+    "상품",
+    "인터넷",
+    "요금제"
+  ],
+  "url": "https://www.skylife.co.kr/product/internet/all",
+  "route": "/product/internet/all",
+  "summary": "인터넷 속도별 요금과 상품 조건을 비교합니다.",
+  "aliases": [
+    "인터넷 가격",
+    "와이파이",
+    "인터넷 속도",
+    "100M",
+    "500M",
+    "기가",
+    "1G"
+  ],
+  "steps": [
+    "인터넷 요금제 화면을 엽니다.",
+    "사용 환경에 맞는 속도 또는 상품을 선택합니다.",
+    "요금과 제공 서비스·가입 조건을 확인합니다."
+  ],
+  "note": "설치 가능 여부는 주소와 환경에 따라 달라집니다.",
+  "login": false,
+  "product": "인터넷",
+  "action": "안내",
+  "external": false,
+  "sourceVerified": true,
+  "screen": {
+    "src": "screens/f-d095e75b5d.jpg",
+    "kind": "live",
+    "caption": "실제 홈페이지 화면 캡처",
+    "captured": "2026-10-14",
+    "url": "https://www.skylife.co.kr/product/internet/all"
+  },
+  "script": "고객님, 스카이라이프 홈페이지에서 상품 → 인터넷 → 요금제 메뉴로 이동해주세요. 인터넷 요금제 화면을 엽니다. 사용 환경에 맞는 속도 또는 상품을 선택합니다. 요금과 제공 서비스·가입 조건을 확인합니다.",
+  "priority": 100,
+  "availability": {
+    "mode": "guide",
+    "label": "정보 안내",
+    "reviewedAt": "2026-10-14"
+  },
+  "$schema": "../feature.schema.json"
+}

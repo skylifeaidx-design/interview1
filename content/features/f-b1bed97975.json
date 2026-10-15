@@ -1,0 +1,49 @@
+{
+  "id": "f-b1bed97975",
+  "title": "모바일 요금제 예약·변경",
+  "major": "이용·변경",
+  "middle": "모바일",
+  "minor": "모바일 요금제 예약·변경",
+  "menu": [
+    "마이",
+    "모바일",
+    "모바일 요금제 예약·변경"
+  ],
+  "url": "https://www.skylife.co.kr/my/mobile/price",
+  "route": "/my/mobile/price",
+  "summary": "사용 중인 모바일 요금제와 변경 가능한 요금제를 확인하고 변경을 예약합니다.",
+  "aliases": [
+    "요금제 바꾸기",
+    "싼 요금제",
+    "데이터 늘리기",
+    "요금제 예약",
+    "플랜 변경",
+    "모바일 변경"
+  ],
+  "steps": [
+    "변경할 모바일 회선을 선택합니다.",
+    "현재 요금제와 변경 가능한 요금제를 비교합니다.",
+    "적용 시점과 안내사항을 확인하고 변경 또는 예약 결과를 확인합니다."
+  ],
+  "note": "변경 가능 여부와 적용일은 회선과 요금제에 따라 달라집니다. 실제 화면에서 확인한 내용을 안내하세요.",
+  "login": true,
+  "product": "모바일",
+  "action": "변경",
+  "external": false,
+  "sourceVerified": true,
+  "screen": {
+    "src": "screens/f-b1bed97975-authenticated.jpg",
+    "kind": "authenticated",
+    "caption": "테스트 계정으로 확인한 실제 기능 화면 · 고객 식별정보와 개인 조회내역을 가려 캡처했습니다.",
+    "captured": "2026-10-14",
+    "url": "https://www.skylife.co.kr/my/mobile/price"
+  },
+  "script": "고객님, 스카이라이프 홈페이지에서 로그인하신 뒤 마이 → 모바일 → 모바일 요금제 예약·변경 메뉴로 이동해주세요. 변경할 모바일 회선을 선택합니다. 현재 요금제와 변경 가능한 요금제를 비교합니다. 적용 시점과 안내사항을 확인하고 변경 또는 예약 결과를 확인합니다.",
+  "priority": 5,
+  "availability": {
+    "mode": "action",
+    "label": "신청·변경",
+    "reviewedAt": "2026-10-14"
+  },
+  "$schema": "../feature.schema.json"
+}

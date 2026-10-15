@@ -1,0 +1,51 @@
+{
+  "id": "f-20e892aa14",
+  "title": "유심 개통/신청",
+  "major": "가입·상품",
+  "middle": "모바일",
+  "minor": "유심 개통/신청",
+  "menu": [
+    "상품",
+    "모바일",
+    "유심 개통/신청"
+  ],
+  "url": "https://www.skylife.co.kr/directOrder/mobile/application",
+  "route": "/directOrder/mobile/application",
+  "summary": "유심 보유 여부에 맞게 모바일 신청·개통 절차를 시작합니다.",
+  "aliases": [
+    "USIM",
+    "유심 신청",
+    "유심 개통",
+    "번호 이동",
+    "번호이동",
+    "신규 가입",
+    "셀프개통",
+    "심카드"
+  ],
+  "steps": [
+    "유심 개통/신청 화면에서 유심 보유 여부 등 시작 조건을 선택합니다.",
+    "요금제와 가입 유형을 확인합니다.",
+    "화면에서 안내하는 본인확인과 신청·개통 절차를 진행합니다."
+  ],
+  "note": "가입 대상·준비물·개통 가능 시간은 현재 화면 안내를 확인하세요.",
+  "login": false,
+  "product": "모바일",
+  "action": "신청",
+  "external": false,
+  "sourceVerified": true,
+  "screen": {
+    "src": "screens/f-20e892aa14.jpg",
+    "kind": "live",
+    "caption": "실제 홈페이지 화면 캡처",
+    "captured": "2026-10-14",
+    "url": "https://www.skylife.co.kr/directOrder/mobile/application"
+  },
+  "script": "고객님, 스카이라이프 홈페이지에서 상품 → 모바일 → 유심 개통/신청 메뉴로 이동해주세요. 유심 개통/신청 화면에서 유심 보유 여부 등 시작 조건을 선택합니다. 요금제와 가입 유형을 확인합니다. 화면에서 안내하는 본인확인과 신청·개통 절차를 진행합니다.",
+  "priority": 100,
+  "availability": {
+    "mode": "action",
+    "label": "신청·변경",
+    "reviewedAt": "2026-10-14"
+  },
+  "$schema": "../feature.schema.json"
+}

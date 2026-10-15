@@ -1,0 +1,50 @@
+{
+  "id": "f-0d2ec35263",
+  "title": "자녀안심 설정 안내",
+  "major": "문의·고객지원",
+  "middle": "서비스 안내",
+  "minor": "자녀안심 설정 안내",
+  "menu": [
+    "고객지원",
+    "서비스 안내",
+    "자녀안심 설정 안내"
+  ],
+  "url": "https://www.skylife.co.kr/center/info/kidscare",
+  "route": "/center/info/kidscare",
+  "summary": "자녀안심 및 시청 관련 설정 방법을 확인합니다.",
+  "aliases": [
+    "성인 차단",
+    "자녀 보호",
+    "시청 제한",
+    "비밀번호",
+    "아동",
+    "유해 채널",
+    "자녀안심"
+  ],
+  "steps": [
+    "자녀안심 설정 안내 화면을 엽니다.",
+    "기기와 기능에 맞는 안내를 선택합니다.",
+    "TV 또는 단말에서 안내된 설정 방법을 따라 진행합니다."
+  ],
+  "note": "홈페이지는 설정 방법을 안내합니다. 실제 설정은 안내된 기기에서 진행하세요.",
+  "login": false,
+  "product": "공통",
+  "action": "안내",
+  "external": false,
+  "sourceVerified": true,
+  "screen": {
+    "src": "screens/f-0d2ec35263.jpg",
+    "kind": "live",
+    "caption": "실제 홈페이지 화면 캡처",
+    "captured": "2026-10-14",
+    "url": "https://www.skylife.co.kr/center/info/kidscare"
+  },
+  "script": "고객님, 스카이라이프 홈페이지에서 고객지원 → 서비스 안내 → 자녀안심 설정 안내 메뉴로 이동해주세요. 자녀안심 설정 안내 화면을 엽니다. 기기와 기능에 맞는 안내를 선택합니다. TV 또는 단말에서 안내된 설정 방법을 따라 진행합니다.",
+  "priority": 100,
+  "availability": {
+    "mode": "guide",
+    "label": "정보 안내",
+    "reviewedAt": "2026-10-14"
+  },
+  "$schema": "../feature.schema.json"
+}

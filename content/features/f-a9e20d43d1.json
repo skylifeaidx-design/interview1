@@ -1,0 +1,49 @@
+{
+  "id": "f-a9e20d43d1",
+  "title": "고객센터 안내",
+  "major": "문의·고객지원",
+  "middle": "서비스 안내",
+  "minor": "고객센터 안내",
+  "menu": [
+    "고객지원",
+    "서비스 안내",
+    "고객센터"
+  ],
+  "url": "https://www.skylife.co.kr/center/info/cscenter",
+  "route": "/center/info/cscenter",
+  "summary": "문의 유형별 연락처와 고객센터 이용 안내를 확인합니다.",
+  "aliases": [
+    "상담사 연결",
+    "전화번호",
+    "고객센터",
+    "상담 시간",
+    "대표번호",
+    "전화 상담"
+  ],
+  "steps": [
+    "고객센터 안내 화면을 엽니다.",
+    "문의할 상품과 업무에 해당하는 안내를 찾습니다.",
+    "연락처와 운영시간을 확인합니다."
+  ],
+  "note": "연락처·운영시간은 현재 홈페이지를 기준으로 안내하세요.",
+  "login": false,
+  "product": "공통",
+  "action": "안내",
+  "external": false,
+  "sourceVerified": true,
+  "screen": {
+    "src": "screens/f-a9e20d43d1.jpg",
+    "kind": "live",
+    "caption": "실제 홈페이지 화면 캡처",
+    "captured": "2026-10-14",
+    "url": "https://www.skylife.co.kr/center/info/cscenter"
+  },
+  "script": "고객님, 스카이라이프 홈페이지에서 고객지원 → 서비스 안내 → 고객센터 메뉴로 이동해주세요. 고객센터 안내 화면을 엽니다. 문의할 상품과 업무에 해당하는 안내를 찾습니다. 연락처와 운영시간을 확인합니다.",
+  "priority": 100,
+  "availability": {
+    "mode": "guide",
+    "label": "정보 안내",
+    "reviewedAt": "2026-10-14"
+  },
+  "$schema": "../feature.schema.json"
+}

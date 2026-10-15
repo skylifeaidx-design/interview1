@@ -1,0 +1,48 @@
+{
+  "id": "f-08a613fd3d",
+  "title": "1:1 문의 내역",
+  "major": "문의·고객지원",
+  "middle": "문의 내역",
+  "minor": "1:1 문의 내역",
+  "menu": [
+    "마이",
+    "나의 문의 내역",
+    "1:1 문의 내역"
+  ],
+  "url": "https://www.skylife.co.kr/my/consult/online",
+  "route": "/my/consult/online",
+  "summary": "작성한 온라인 문의와 답변을 확인합니다.",
+  "aliases": [
+    "답변 확인",
+    "문의 답변",
+    "문의 처리",
+    "게시판 답변",
+    "상담 이력"
+  ],
+  "steps": [
+    "로그인 후 나의 문의 내역을 엽니다.",
+    "확인할 문의 건을 선택합니다.",
+    "문의 내용과 답변·처리 상태를 확인합니다."
+  ],
+  "note": "신규 문의 작성은 고객지원의 1:1 문의 화면에서 진행합니다.",
+  "login": true,
+  "product": "공통",
+  "action": "조회",
+  "external": false,
+  "sourceVerified": true,
+  "screen": {
+    "src": "screens/f-08a613fd3d-authenticated.jpg",
+    "kind": "authenticated",
+    "caption": "테스트 계정으로 확인한 실제 기능 화면 · 고객 식별정보와 개인 조회내역을 가려 캡처했습니다.",
+    "captured": "2026-10-14",
+    "url": "https://www.skylife.co.kr/my/consult/online"
+  },
+  "script": "고객님, 스카이라이프 홈페이지에서 로그인하신 뒤 마이 → 나의 문의 내역 → 1:1 문의 내역 메뉴로 이동해주세요. 로그인 후 나의 문의 내역을 엽니다. 확인할 문의 건을 선택합니다. 문의 내용과 답변·처리 상태를 확인합니다.",
+  "priority": 100,
+  "availability": {
+    "mode": "lookup",
+    "label": "조회",
+    "reviewedAt": "2026-10-14"
+  },
+  "$schema": "../feature.schema.json"
+}

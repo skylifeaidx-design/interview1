@@ -1,0 +1,49 @@
+{
+  "id": "f-863ff4c595",
+  "title": "결합상품 안내",
+  "major": "가입·상품",
+  "middle": "상품",
+  "minor": "결합상품 안내",
+  "menu": [
+    "상품",
+    "결합상품"
+  ],
+  "url": "https://www.skylife.co.kr/product/combi/Main",
+  "route": "/product/combi/Main",
+  "summary": "TV·인터넷·모바일을 함께 이용할 때의 결합 혜택을 확인합니다.",
+  "aliases": [
+    "결합",
+    "묶어서",
+    "가족결합",
+    "홈결합",
+    "누구나결합",
+    "같이 가입",
+    "결합 할인"
+  ],
+  "steps": [
+    "결합상품 화면을 엽니다.",
+    "고객의 이용 상품에 맞는 결합 유형을 선택합니다.",
+    "구성·할인·가입 조건과 신청 경로를 확인합니다."
+  ],
+  "note": "결합 가능 상품과 할인 적용 조건은 해당 상세 안내를 확인하세요.",
+  "login": false,
+  "product": "공통",
+  "action": "안내",
+  "external": false,
+  "sourceVerified": true,
+  "screen": {
+    "src": "screens/f-863ff4c595.jpg",
+    "kind": "live",
+    "caption": "실제 홈페이지 화면 캡처",
+    "captured": "2026-10-14",
+    "url": "https://www.skylife.co.kr/product/combi/Main"
+  },
+  "script": "고객님, 스카이라이프 홈페이지에서 상품 → 결합상품 메뉴로 이동해주세요. 결합상품 화면을 엽니다. 고객의 이용 상품에 맞는 결합 유형을 선택합니다. 구성·할인·가입 조건과 신청 경로를 확인합니다.",
+  "priority": 100,
+  "availability": {
+    "mode": "guide",
+    "label": "정보 안내",
+    "reviewedAt": "2026-10-14"
+  },
+  "$schema": "../feature.schema.json"
+}

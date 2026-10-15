@@ -1,0 +1,50 @@
+{
+  "id": "f-7929f3c2ff",
+  "title": "eSIM 개통",
+  "major": "가입·상품",
+  "middle": "모바일",
+  "minor": "eSIM 개통",
+  "menu": [
+    "상품",
+    "모바일",
+    "eSIM 개통"
+  ],
+  "url": "https://www.skylife.co.kr/directOrder/mobile/application/esim",
+  "route": "/directOrder/mobile/application/esim",
+  "summary": "eSIM 이용 조건과 모바일 개통 절차를 확인합니다.",
+  "aliases": [
+    "이심",
+    "esim",
+    "e심",
+    "이SIM",
+    "유심 없이",
+    "QR 개통",
+    "듀얼심"
+  ],
+  "steps": [
+    "eSIM 개통 화면을 엽니다.",
+    "이용 단말의 지원 여부와 준비사항을 확인합니다.",
+    "본인확인과 신청 절차를 따라 개통을 진행합니다."
+  ],
+  "note": "단말 호환 여부와 발급·다운로드 조건은 실제 화면을 확인하세요.",
+  "login": false,
+  "product": "모바일",
+  "action": "신청",
+  "external": false,
+  "sourceVerified": true,
+  "screen": {
+    "src": "screens/f-7929f3c2ff.jpg",
+    "kind": "live",
+    "caption": "실제 홈페이지 화면 캡처",
+    "captured": "2026-10-14",
+    "url": "https://www.skylife.co.kr/directOrder/mobile/application/esim"
+  },
+  "script": "고객님, 스카이라이프 홈페이지에서 상품 → 모바일 → eSIM 개통 메뉴로 이동해주세요. eSIM 개통 화면을 엽니다. 이용 단말의 지원 여부와 준비사항을 확인합니다. 본인확인과 신청 절차를 따라 개통을 진행합니다.",
+  "priority": 100,
+  "availability": {
+    "mode": "action",
+    "label": "신청·변경",
+    "reviewedAt": "2026-10-14"
+  },
+  "$schema": "../feature.schema.json"
+}

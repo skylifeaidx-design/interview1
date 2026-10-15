@@ -1,0 +1,50 @@
+{
+  "id": "f-e54aa7dc65",
+  "title": "요금 납부방법 안내",
+  "major": "요금·납부",
+  "middle": "요금 안내",
+  "minor": "요금 납부방법 안내",
+  "menu": [
+    "고객지원",
+    "서비스 안내",
+    "요금 안내",
+    "요금 납부방법"
+  ],
+  "url": "https://www.skylife.co.kr/center/info/charge/pay/account",
+  "route": "/center/info/charge/pay/account",
+  "summary": "자동이체 등 납부 방식별 안내와 이용 조건을 확인합니다.",
+  "aliases": [
+    "자동이체",
+    "계좌이체",
+    "납부 방법",
+    "자동납부",
+    "은행",
+    "카드 납부"
+  ],
+  "steps": [
+    "요금 납부방법 안내 화면을 엽니다.",
+    "고객이 원하는 납부 방식을 선택합니다.",
+    "이용 조건과 등록·변경 경로를 확인합니다."
+  ],
+  "note": "납부방법 설명과 실제 납부·변경 화면을 구분하세요.",
+  "login": false,
+  "product": "공통",
+  "action": "안내",
+  "external": false,
+  "sourceVerified": true,
+  "screen": {
+    "src": "screens/f-e54aa7dc65.jpg",
+    "kind": "live",
+    "caption": "실제 홈페이지 화면 캡처",
+    "captured": "2026-10-14",
+    "url": "https://www.skylife.co.kr/center/info/charge/pay/account"
+  },
+  "script": "고객님, 스카이라이프 홈페이지에서 고객지원 → 서비스 안내 → 요금 안내 → 요금 납부방법 메뉴로 이동해주세요. 요금 납부방법 안내 화면을 엽니다. 고객이 원하는 납부 방식을 선택합니다. 이용 조건과 등록·변경 경로를 확인합니다.",
+  "priority": 100,
+  "availability": {
+    "mode": "guide",
+    "label": "정보 안내",
+    "reviewedAt": "2026-10-14"
+  },
+  "$schema": "../feature.schema.json"
+}

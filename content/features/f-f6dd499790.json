@@ -1,0 +1,48 @@
+{
+  "id": "f-f6dd499790",
+  "title": "리모컨 구매",
+  "major": "이용·변경",
+  "middle": "TV 채널·기기",
+  "minor": "리모컨 구매",
+  "menu": [
+    "상품",
+    "TV",
+    "리모컨 구매"
+  ],
+  "url": "https://www.skylife.co.kr/product/tv/remote",
+  "route": "/product/tv/remote",
+  "summary": "TV 리모컨 종류와 구매 안내를 확인합니다.",
+  "aliases": [
+    "리모콘",
+    "리모컨 분실",
+    "리모컨 고장",
+    "리모컨 사기",
+    "리모콘 구매"
+  ],
+  "steps": [
+    "리모컨 구매 화면을 엽니다.",
+    "이용 중인 셋톱박스에 맞는 리모컨을 확인합니다.",
+    "가격·구매 안내와 제공되는 신청 경로를 확인합니다."
+  ],
+  "note": "호환 기기와 현재 구매 조건을 확인한 뒤 안내하세요.",
+  "login": false,
+  "product": "TV",
+  "action": "구매",
+  "external": false,
+  "sourceVerified": true,
+  "screen": {
+    "src": "screens/f-f6dd499790.jpg",
+    "kind": "live",
+    "caption": "실제 홈페이지 화면 캡처",
+    "captured": "2026-10-14",
+    "url": "https://www.skylife.co.kr/product/tv/remote"
+  },
+  "script": "고객님, 스카이라이프 홈페이지에서 상품 → TV → 리모컨 구매 메뉴로 이동해주세요. 리모컨 구매 화면을 엽니다. 이용 중인 셋톱박스에 맞는 리모컨을 확인합니다. 가격·구매 안내와 제공되는 신청 경로를 확인합니다.",
+  "priority": 100,
+  "availability": {
+    "mode": "guide",
+    "label": "정보 안내",
+    "reviewedAt": "2026-10-14"
+  },
+  "$schema": "../feature.schema.json"
+}

@@ -1,0 +1,49 @@
+{
+  "id": "f-c266dcd4ab",
+  "title": "TV 실시간 편성표",
+  "major": "이용·변경",
+  "middle": "TV 채널·기기",
+  "minor": "TV 실시간 편성표",
+  "menu": [
+    "상품",
+    "TV",
+    "채널번호 안내",
+    "실시간 편성표"
+  ],
+  "url": "https://www.skylife.co.kr/product/tv/channelNo/chart",
+  "route": "/product/tv/channelNo/chart",
+  "summary": "채널별 방송 편성 정보를 확인합니다.",
+  "aliases": [
+    "방송 시간",
+    "몇 시",
+    "편성표",
+    "프로그램 시간",
+    "오늘 방송"
+  ],
+  "steps": [
+    "실시간 편성표 화면을 엽니다.",
+    "확인할 채널과 날짜·시간을 선택합니다.",
+    "프로그램명과 방송 시간을 확인합니다."
+  ],
+  "note": "편성은 방송사 사정에 따라 변경될 수 있으므로 현재 화면으로 안내하세요.",
+  "login": false,
+  "product": "TV",
+  "action": "조회",
+  "external": false,
+  "sourceVerified": true,
+  "screen": {
+    "src": "screens/f-c266dcd4ab.jpg",
+    "kind": "live",
+    "caption": "실제 홈페이지 화면 캡처",
+    "captured": "2026-10-14",
+    "url": "https://www.skylife.co.kr/product/tv/channelNo/chart?type=iptv"
+  },
+  "script": "고객님, 스카이라이프 홈페이지에서 상품 → TV → 채널번호 안내 → 실시간 편성표 메뉴로 이동해주세요. 실시간 편성표 화면을 엽니다. 확인할 채널과 날짜·시간을 선택합니다. 프로그램명과 방송 시간을 확인합니다.",
+  "priority": 100,
+  "availability": {
+    "mode": "lookup",
+    "label": "조회",
+    "reviewedAt": "2026-10-14"
+  },
+  "$schema": "../feature.schema.json"
+}
