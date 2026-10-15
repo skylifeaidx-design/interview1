@@ -6,6 +6,8 @@
 
 Vercel `interview1` 프로젝트의 Storage에서 Blob을 만들 때 **Private**를 선택하고 **Production** 환경에 연결합니다. Vercel이 연결한 `BLOB_STORE_ID` 및 OIDC 또는 `BLOB_READ_WRITE_TOKEN`을 SDK가 서버에서 사용합니다. 토큰은 코드·브라우저·공개 JSON·대화에 넣지 않습니다. 환경변수 연결을 변경했다면 Production을 다시 배포합니다.
 
+Vercel Functions의 OIDC 토큰은 요청 컨텍스트로 제공될 수 있으므로 `VERCEL_OIDC_TOKEN` 환경변수의 존재를 연결 필수 조건으로 삼지 않습니다. 연결된 store ID를 확인하고 실제 인증은 SDK에 맡깁니다. 이 방식은 [SDK의 요청별 토큰 처리](https://github.com/vercel/storage/blob/main/packages/blob/src/vercel-oidc-token.ts)를 따릅니다.
+
 저장 객체는 `qna/state.json`이며, 공개 콘텐츠와 작성자 권한 해시·변경 기록·요청 제한 상태를 함께 보관합니다. Blob URL은 공개 UI에 전달하지 않습니다. `GET /api/qna`는 공개 가능한 필드만 반환하며 캐시하지 않습니다. DB·SQL·Redis·마이그레이션은 사용하지 않습니다.
 
 저장소 연결이 없거나 읽기가 실패하면 준비 중 또는 오류를 알리고 쓰기를 막습니다. 브라우저 임시 저장을 공유 저장으로 대체하지 않습니다. Preview 배포는 읽기 전용입니다. 운영 출처는 `https://interview1-chi.vercel.app`이며 추가 도메인은 서버의 `QNA_ALLOWED_ORIGINS`에 정확한 HTTPS origin으로 지정합니다.

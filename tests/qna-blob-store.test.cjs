@@ -15,6 +15,20 @@ function deferredStream(chunks) {
   return { stream, wasCancelled: () => cancelled };
 }
 
+test('연결된 store ID만 있어도 요청별 OIDC 인증 판정을 SDK에 맡긴다', async () => {
+  let loads = 0;
+  const store = createBlobStore({ env: { BLOB_STORE_ID: 'store_unit-test-only' },
+    loadSdk: async () => { loads++; return { get: async (pathname, options) => {
+      assert.equal(pathname, PATHNAME);
+      assert.deepEqual(options, { access: 'private', useCache: false });
+      return null;
+    } }; } });
+  assert.equal(store.configured(), true);
+  assert.equal(loads, 0);
+  assert.equal(await store.read(), null);
+  assert.equal(loads, 1);
+});
+
 test('Blob adapter는 private 원본 읽기와 ETag를 보존하고 인증정보를 SDK 인수에 노출하지 않는다', async () => {
   const calls = []; let loads = 0;
   const api = { get: async (...args) => { calls.push(args); return reply({ schemaVersion: 1 }, '"quoted-etag"'); } };

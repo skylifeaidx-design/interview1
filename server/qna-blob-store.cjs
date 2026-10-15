@@ -4,7 +4,8 @@ const PATHNAME = 'qna/state.json';
 function createBlobStore({ env = process.env, loadSdk = () => import('@vercel/blob'), maximumBytes = DEFAULT_LIMITS.snapshotBytes } = {}) {
   let sdkPromise;
   const sdk = () => (sdkPromise ||= Promise.resolve().then(loadSdk));
-  const configured = () => Boolean((env.BLOB_STORE_ID && env.VERCEL_OIDC_TOKEN) || env.BLOB_READ_WRITE_TOKEN);
+  // The SDK reads OIDC from Vercel's request context as well as environment variables.
+  const configured = () => Boolean(env.BLOB_STORE_ID || env.BLOB_READ_WRITE_TOKEN);
   function assertConfigured() {
     if (!configured()) throw new QnaError(503, 'STORAGE_NOT_CONFIGURED', '공유 저장소 연결을 준비하고 있습니다.');
   }
