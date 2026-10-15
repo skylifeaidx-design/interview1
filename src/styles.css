@@ -23,3 +23,21 @@
 .pill.product{color:#40617a}.pill.login{color:#7a561f}.pill.action{color:#326343}.screen-kind{color:#526d5b}.screen-kind.source{color:#805d24}.screen-caption strong{color:#805d24}.note-box,.note-box strong{color:#7e602f}.menu-path{color:#466c51}.search-box input::placeholder{color:#63786a}
 .nav-item.active,.nav-sub button.active,.purpose-filters button[aria-pressed=true],.personal-nav button.selected{color:#066d52}.match-reason,.empty-state,.empty-state .suggestions button,.about-dialog,.browser-bar,kbd,.eyebrow,.section-number{color:#566d5e}.search-context{color:#4e687a}.secondary-button{color:#466b51}.footer b{color:#456a50}
 @media print{body{background:#fff}.sidebar,.workspace,.menu-backdrop,.toast,.image-dialog,.about-dialog,.guide-close,.guide-toolbar,.copy-script,.menu-path button,.screen-button>span,.related,.noscript-note{display:none!important}.guide-dialog{display:block!important;position:static;max-height:none;width:100%;max-width:none;margin:0;border-radius:0;box-shadow:none;overflow:visible}.guide-dialog::backdrop{display:none}.guide-head{padding:10px 0 17px}.guide-content{padding:18px 0;grid-template-columns:1fr 1fr;gap:22px}.guide-content section,.steps li,.note-box,.script-box{break-inside:avoid}.guide-head h2{font-size:25px}.screen-button img{max-height:380px;object-fit:contain}.steps li,.script-box{font-size:12px}.guide-content h3{font-size:14px}.precheck,.screen-caption{font-size:11px}}
+
+/* Consistent purpose colors; text labels and checkmarks also identify each state. */
+.purpose-all{--purpose-ink:#066d52;--purpose-bg:#e9f3ed;--purpose-border:#9bcbb8}
+.purpose-purchase{--purpose-ink:#6d28d9;--purpose-bg:#f3e8ff;--purpose-border:#d8b4fe}
+.purpose-payment{--purpose-ink:#9a3412;--purpose-bg:#fff1e8;--purpose-border:#fdba74}
+.purpose-registration{--purpose-ink:#0f766e;--purpose-bg:#e6f6f3;--purpose-border:#7dd3c7}
+.purpose-change{--purpose-ink:#854d0e;--purpose-bg:#fff7db;--purpose-border:#e8c86a}
+.purpose-application{--purpose-ink:#1d4ed8;--purpose-bg:#eaf1ff;--purpose-border:#a9c4fb}
+.purpose-information{--purpose-ink:#9d174d;--purpose-bg:#fff0f6;--purpose-border:#f4a9c9}
+.purpose-lookup,.purpose-other{--purpose-ink:#475569;--purpose-bg:#f1f5f9;--purpose-border:#cbd5e1}
+.purpose-filters button{display:inline-flex;align-items:center;justify-content:center;gap:5px;white-space:nowrap;background:var(--purpose-bg);color:var(--purpose-ink);border-color:var(--purpose-border)}
+.purpose-filters button:hover{background:var(--purpose-bg);border-color:var(--purpose-ink);box-shadow:inset 0 0 0 1px var(--purpose-ink)}
+.purpose-filters button[aria-pressed=true]{background:var(--purpose-ink);color:#fff;border-color:var(--purpose-ink);box-shadow:inset 0 0 0 1px var(--purpose-ink);font-weight:600}
+.purpose-filters button:focus-visible{outline:3px solid var(--purpose-ink);outline-offset:3px}
+.purpose-check{width:11px;flex:0 0 11px;opacity:0;font-size:12px;line-height:1}
+.purpose-filters button[aria-pressed=true] .purpose-check{opacity:1}
+.pill.purpose-badge{background:var(--purpose-bg);color:var(--purpose-ink);border:1px solid var(--purpose-border);line-height:21px;font-weight:600}
+.active-chip.purpose-chip{background:var(--purpose-bg);color:var(--purpose-ink);border:1px solid var(--purpose-border)}
