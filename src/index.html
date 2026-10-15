@@ -8,7 +8,10 @@
  <title>스카이라이프 홈페이지 기능 가이드북</title>
  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
  <link rel="stylesheet" href="styles.css">
+ <link rel="stylesheet" href="qna.css">
  <script defer src="search.js"></script>
+ <script defer src="qna-search.js"></script>
+ <script defer src="qna.js"></script>
  <script defer src="app.js"></script>
 </head>
 <body>
@@ -19,6 +22,8 @@
   <button id="mobile-menu-close" class="icon-button mobile-menu-close" aria-label="분류 메뉴 닫기">✕</button>
   <div class="sidebar-section-label">나의 업무 바로가기</div>
   <div class="personal-nav"><button data-view="saved"><span data-icon="bookmark"></span>즐겨찾기<span class="count" id="sidebar-saved-count">0</span></button><button data-view="recent"><span data-icon="clock"></span>최근 본 기능<span class="count" id="sidebar-recent-count">0</span></button></div>
+  <div class="sidebar-section-label">함께 나누는 상담 경험</div>
+  <div class="personal-nav qna-personal-nav"><button id="qna-nav" aria-controls="qna-section" aria-expanded="false"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M20 11a8 8 0 0 1-8 8H7l-4 3V11a9 9 0 0 1 17 0Z"/><path d="M7 10h9M7 14h6"/></svg>상담사 주요 QnA<span class="count" id="qna-nav-count">—</span></button></div>
   <div class="sidebar-section-label">홈페이지 기능 분류</div>
   <nav id="category-nav" aria-label="대분류 및 중분류"></nav>
   <div class="sidebar-bottom"><span class="status-dot"></span>상담에 필요한 기능을 한곳에<p>화면 확인 기준 <time id="catalog-updated">2026.10.14</time></p><button id="about-button">가이드북 이용 안내 <span aria-hidden="true">↗</span></button></div>
@@ -42,13 +47,27 @@
     <div id="cards" class="cards" role="tabpanel" aria-labelledby="tab-all" aria-busy="true"><div class="loading-state"><span class="loading-dot"></span>기능과 화면 안내를 준비하고 있어요.</div></div>
     <div id="empty-state" class="empty-state" hidden></div>
    </section>
+   <section id="qna-section" class="qna-section" aria-labelledby="qna-title" hidden>
+    <header class="qna-page-heading"><div><p class="eyebrow">함께 나누는 상담 경험</p><h1 id="qna-title">상담사 주요 QnA</h1><p>궁금한 점을 묻고, 함께 찾은 안내 방법을 나누세요.</p></div><span class="qna-source">참여자 작성</span></header>
+    <p class="qna-boundary">공식 홈페이지 기능 가이드와 구분되는 참여자 질문·답변입니다. 실제 메뉴와 이용 조건을 확인한 뒤 안내해주세요.</p>
+    <div id="qna-status" class="qna-status" role="status" aria-live="polite">공유 질문·답변을 불러오고 있습니다.</div>
+    <div class="qna-toolbar"><div id="qna-tabs" class="qna-tabs" role="tablist" aria-label="질문 목록 보기"><button id="qna-tab-all" role="tab" data-qna-view="all" aria-selected="true" aria-controls="qna-list" tabindex="0">전체</button><button id="qna-tab-waiting" role="tab" data-qna-view="waiting" aria-selected="false" aria-controls="qna-list" tabindex="-1">답변 대기</button><button id="qna-tab-answered" role="tab" data-qna-view="answered" aria-selected="false" aria-controls="qna-list" tabindex="-1">답변 있음</button><button id="qna-tab-mine" role="tab" data-qna-view="mine" aria-selected="false" aria-controls="qna-list" tabindex="-1">내 글</button></div><div class="qna-toolbar-actions"><button id="qna-refresh" class="secondary-button" type="button">새로고침</button><button id="qna-create" class="qna-primary" type="button" disabled>질문 작성</button></div></div>
+    <div class="qna-filter-row"><label for="qna-category">질문 분류</label><select id="qna-category"><option value="">모든 분류</option></select><p id="qna-result-summary" role="status" aria-live="polite"></p><button id="qna-clear-query" type="button" hidden>검색어 지우기</button></div>
+    <div id="qna-list" class="qna-list" role="tabpanel" aria-labelledby="qna-tab-all" aria-busy="true"></div>
+    <p class="qna-ownership-note">‘내 글’에는 이 브라우저에서 작성한 질문과 답변이 표시됩니다. 수정 권한은 이 브라우저에 보관되며, 저장된 브라우저 기록을 지우면 권한을 잃을 수 있습니다.</p>
+   </section>
+   <section id="qna-global-results" class="qna-global-results" aria-labelledby="qna-global-title" hidden><div class="qna-global-heading"><div><span class="qna-source">참여자 작성</span><h2 id="qna-global-title">상담사 QnA 검색 결과</h2></div><button id="qna-global-open" class="secondary-button" type="button">QnA 전체 보기 <span aria-hidden="true">↗</span></button></div><p id="qna-global-summary" role="status" aria-live="polite"></p><div id="qna-global-list" class="qna-list"></div><p class="qna-global-note">참여자가 작성한 내용입니다. 공식 홈페이지 기능 가이드와 구분해 확인해주세요.</p></section>
    <footer class="footer"><span><b>kt skylife</b> 홈페이지 기능 가이드북</span><p>메뉴·요금·이용 가능 여부는 현재 홈페이지에서 최종 확인해주세요.</p><button id="footer-about">이용 안내 ↗</button></footer>
   </main>
  </div>
  <dialog id="guide-dialog" class="guide-dialog" aria-labelledby="guide-title"><div id="guide-body"></div></dialog>
  <dialog id="image-dialog" class="image-dialog" aria-labelledby="zoom-title"><div class="image-toolbar"><h2 id="zoom-title">화면 전체 보기</h2><div><button id="zoom-fit" aria-pressed="false">원본 크기</button><button id="zoom-close" class="icon-button" aria-label="화면 확대 닫기">✕</button></div></div><div id="zoom-frame" class="zoom-frame"><img id="zoom-image" alt=""></div><p id="zoom-caption"></p></dialog>
- <dialog id="about-dialog" class="about-dialog" aria-labelledby="about-title"><button id="about-close" class="icon-button about-close" aria-label="이용 안내 닫기">✕</button><p class="eyebrow">GUIDEBOOK HELP</p><h2 id="about-title">상담 중, 이렇게 활용하세요.</h2><h3>질문을 입력하고 결과를 비교하세요</h3><p>고객이 쓰는 표현이나 짧은 문장으로 검색하세요. 초성·유사어·가벼운 오타를 함께 찾으며, 검색 결과에 연결된 이유를 표시합니다. 자동완성은 방향키로 고른 뒤 Enter로 검색할 수 있습니다.</p><h3>처리 유형과 인증 조건을 먼저 확인하세요</h3><p>‘신청·변경’, ‘조회’, ‘정보 안내’, ‘외부 서비스’는 메뉴의 목적을 구분합니다. 고객의 계약과 가입상품에 따른 실제 이용 가능 여부는 홈페이지 로그인 후 확인해야 합니다. 가이드북에서 고객 업무를 직접 처리하지 않습니다.</p><h3>메뉴 경로와 조치 순서를 안내하세요</h3><p>기능을 열면 안내 전 확인사항, 메뉴 경로, 고객 조치 순서와 복사할 안내 문구를 볼 수 있습니다. ‘홈페이지 바로가기’는 해당 메뉴를 새 창에서 엽니다. ‘가이드 링크 복사’는 상담 가이드의 직접 링크입니다.</p><h3>캡처의 종류를 구분하세요</h3><p>공개 화면은 실제 화면 캡처, 인증 후 화면은 개인정보를 가린 테스트 계정 캡처입니다. 청구요금 화면은 실제 화면 소스와 가상 데이터를 사용한 예시로 별도 표시합니다. 화면 확인 기준일 이후 메뉴가 달라질 수 있습니다.</p><h3>반복 안내할 기능은 저장하세요</h3><p>즐겨찾기와 최근 본 기능은 현재 브라우저에만 저장됩니다. 다른 사람과 자동으로 공유되지 않습니다. 고객정보나 계정정보를 입력할 필요가 없습니다. <kbd>/</kbd> 또는 <kbd>Ctrl K</kbd>로 검색창으로 이동하고, <kbd>Esc</kbd>로 상세·확대 화면을 닫을 수 있습니다.</p></dialog>
+ <dialog id="about-dialog" class="about-dialog" aria-labelledby="about-title"><button id="about-close" class="icon-button about-close" aria-label="이용 안내 닫기">✕</button><p class="eyebrow">GUIDEBOOK HELP</p><h2 id="about-title">상담 중, 이렇게 활용하세요.</h2><h3>질문을 입력하고 결과를 비교하세요</h3><p>고객이 쓰는 표현이나 짧은 문장으로 검색하세요. 초성·유사어·가벼운 오타를 함께 찾으며, 검색 결과에 연결된 이유를 표시합니다. 자동완성은 방향키로 고른 뒤 Enter로 검색할 수 있습니다.</p><h3>처리 유형과 인증 조건을 먼저 확인하세요</h3><p>‘신청·변경’, ‘조회’, ‘정보 안내’, ‘외부 서비스’는 메뉴의 목적을 구분합니다. 고객의 계약과 가입상품에 따른 실제 이용 가능 여부는 홈페이지 로그인 후 확인해야 합니다. 가이드북에서 고객 업무를 직접 처리하지 않습니다.</p><h3>메뉴 경로와 조치 순서를 안내하세요</h3><p>기능을 열면 안내 전 확인사항, 메뉴 경로, 고객 조치 순서와 복사할 안내 문구를 볼 수 있습니다. ‘홈페이지 바로가기’는 해당 메뉴를 새 창에서 엽니다. ‘가이드 링크 복사’는 상담 가이드의 직접 링크입니다.</p><h3>캡처의 종류를 구분하세요</h3><p>공개 화면은 실제 화면 캡처, 인증 후 화면은 개인정보를 가린 테스트 계정 캡처입니다. 청구요금 화면은 실제 화면 소스와 가상 데이터를 사용한 예시로 별도 표시합니다. 화면 확인 기준일 이후 메뉴가 달라질 수 있습니다.</p><h3>반복 안내할 기능은 저장하세요</h3><p>즐겨찾기와 최근 본 기능은 현재 브라우저에만 저장됩니다. 다른 사람과 자동으로 공유되지 않습니다. 고객정보나 계정정보를 입력할 필요가 없습니다. <kbd>/</kbd> 또는 <kbd>Ctrl K</kbd>로 검색창으로 이동하고, <kbd>Esc</kbd>로 상세·확대 화면을 닫을 수 있습니다.</p><h3>상담사 주요 QnA에서 경험을 나누세요</h3><p>공유 저장소가 연결되면 누구나 질문과 답변을 등록하고 함께 볼 수 있습니다. 위 검색창에서 질문·답변 내용까지 검색하고, ‘내 글’에서 이 브라우저로 작성한 내용을 수정·삭제할 수 있습니다. 수정 권한은 작성한 브라우저에 보관되며, 답변이 있는 질문은 삭제할 수 없습니다. 참여자가 작성한 내용은 공식 홈페이지 기능 가이드와 구분해 확인하고, 개인정보와 계정정보는 입력하지 마세요. ‘공유 저장소 연결 준비 중’일 때는 작성할 수 없습니다.</p></dialog>
  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+ <dialog id="qna-thread-dialog" class="qna-dialog qna-thread-dialog" aria-labelledby="qna-thread-title"><div id="qna-thread-body"></div></dialog>
+ <dialog id="qna-compose-dialog" class="qna-dialog qna-compose-dialog" aria-labelledby="qna-compose-title"><div id="qna-compose-body"></div></dialog>
+ <dialog id="qna-confirm-dialog" class="qna-dialog qna-confirm-dialog" aria-labelledby="qna-confirm-title"><div id="qna-confirm-body"></div></dialog>
+ <div id="qna-notice" class="qna-notice" role="status" aria-live="polite"></div>
  <noscript><p class="noscript-note">가이드북의 검색과 기능 안내를 이용하려면 브라우저에서 JavaScript를 허용해주세요.</p></noscript>
 </body>
 </html>
