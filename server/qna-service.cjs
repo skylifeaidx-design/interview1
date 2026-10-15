@@ -1,5 +1,4 @@
 const crypto = require('node:crypto');
-const retireGeneratedFixture = require('./qna-fixture-cleanup.cjs');
 
 const DEFAULT_LIMITS = Object.freeze({
   snapshotBytes: 4 * 1024 * 1024, questions: 500, answers: 50,
@@ -250,7 +249,6 @@ function createQnaService({ store, now = Date.now, limits: overrides = {} } = {}
         const current = await readStored(); const snapshot = current ? current.value : emptySnapshot();
         const replay = duplicate(snapshot, command, ownerHash); if (replay) return replay;
         const timestamp = Number(now());
-        retireGeneratedFixture(snapshot, publicQuestion, new Date(timestamp).toISOString());
         const result = apply(snapshot, command, ownerHash, timestamp, limits);
         rateLimit(snapshot, ownerHash, ip, timestamp, limits);
         if (bytes(snapshot) > limits.snapshotBytes) fail(413, 'STORAGE_SIZE_LIMIT', '공유 저장 공간이 가득 찼습니다. 내용을 정리한 뒤 다시 시도해주세요.');
