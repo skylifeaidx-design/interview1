@@ -278,4 +278,5 @@ function createMemoryStore({ initial = null, beforeWrite } = {}) {
     inspect: () => value ? clone(value) : null,
   };
 }
-module.exports = { createQnaService, createMemoryStore, QnaError, QnaStoreConflictError, DEFAULT_LIMITS, validOwnerKey };
+module.exports = { createQnaService, createMemoryStore, QnaError, QnaStoreConflictError, DEFAULT_LIMITS, validOwnerKey,
+  emptySnapshot, checkedSnapshot, normalizeCommand };

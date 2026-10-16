@@ -8,7 +8,9 @@ const {createQnaHandler}=require('../server/qna-http.cjs');
 let qna;
 if(process.env.QNA_LOCAL_TEST==='1'){
   const {createQnaService,createMemoryStore}=require('../server/qna-service.cjs');
-  qna=createQnaHandler({service:createQnaService({store:createMemoryStore()}),env:{QNA_ALLOWED_ORIGINS:`http://127.0.0.1:${port},http://localhost:${port}`}});
+  const store=createMemoryStore();
+  const service=process.env.QNA_LOCAL_SAMPLES==='1'?require('../server/qna-publication.cjs').createPublishedQnaService({store,publish:true}):createQnaService({store});
+  qna=createQnaHandler({service,env:{QNA_ALLOWED_ORIGINS:`http://127.0.0.1:${port},http://localhost:${port}`}});
 }else qna=createQnaHandler();
 const server=http.createServer((request,response)=>{
   for(const {key,value} of headers)response.setHeader(key,value);

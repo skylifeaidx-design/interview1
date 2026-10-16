@@ -95,7 +95,7 @@
   else if(state.q&&response.correction){context.hidden=false;context.innerHTML=`<span>비슷한 검색어: </span><button data-query="${esc(response.correction)}">${esc(response.correction)}</button><span>· 입력한 질문과 함께 확인했어요.</span>`;}
   else if(state.q&&response.lowConfidence&&items.length){context.hidden=false;context.innerHTML='<span>가까운 기능을 찾았어요. 상품·처리 유형이 고객의 상황과 맞는지 확인해주세요.</span>';}
   $('#cards').innerHTML=items.map((item,index)=>cardHTML(item,index)).join('');$('#cards').setAttribute('aria-busy','false');
-  $('#empty-state').hidden=items.length>0||qnaCount>0;if(!items.length)renderEmpty(response);
+  $('#empty-state').hidden=items.length>0||(qnaCount>0&&!Object.keys(filterValues()).length);if(!items.length)renderEmpty(response);
   window.GuideQnA?.setQuery(state.q,{showGlobal:state.view==='all'});
  }
  function cardHTML({feature:f,reason,matchedTerms=[]},index){
