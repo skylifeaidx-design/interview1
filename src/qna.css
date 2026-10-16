@@ -7,3 +7,4 @@
 .qna-dialog-head>.qna-source{max-width:calc(100% - 45px);white-space:normal}.qna-dialog .qna-notice{left:50%}
 .qna-page-heading p,.qna-boundary,.qna-status,.qna-ownership-note,.qna-form-note,.qna-privacy-note,.qna-empty p{word-break:keep-all;overflow-wrap:anywhere}
 @media(prefers-reduced-motion:reduce){.qna-notice{transition:none}}
+.qna-reference-link{color:#08765c;text-decoration:underline;text-underline-offset:3px;overflow-wrap:anywhere}.qna-reference-link:focus-visible{outline:2px solid #08765c;outline-offset:3px}

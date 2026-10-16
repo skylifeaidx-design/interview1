@@ -26,6 +26,7 @@ const catalogJson=JSON.stringify(catalog);
 fs.writeFileSync(path.join(dist,'data.json'),catalogJson);
 fs.writeFileSync(path.join(dist,'search-dictionary.json'),JSON.stringify(dictionary));
 const hash=crypto.createHash('sha256').update(catalogJson).update(JSON.stringify(dictionary));
+hash.update(JSON.stringify(JSON.parse(fs.readFileSync(path.join(root,'content/qna-samples.json'),'utf8'))));
 for(const file of clientFiles)hash.update(fs.readFileSync(path.join(dist,file)));
-fs.writeFileSync(path.join(dist,'release.json'),JSON.stringify({version:catalog.version,contentUpdated:catalog.updated,guideUpdated:catalog.guideUpdated,features:result.features,buildHash:hash.digest('hex'),commit:process.env.VERCEL_GIT_COMMIT_SHA||null}));
+fs.writeFileSync(path.join(dist,'release.json'),JSON.stringify({version:catalog.version,contentUpdated:catalog.updated,guideUpdated:catalog.guideUpdated,features:result.features,qnaSamples:result.qnaSamples,qnaRevision:result.qnaRevision,buildHash:hash.digest('hex'),commit:process.env.VERCEL_GIT_COMMIT_SHA||null}));
 console.log(JSON.stringify({빌드:'완료',...result,output:'dist'}));

@@ -1,8 +1,10 @@
-# 스카이라이프 홈페이지 기능 가이드북 v3
+# 스카이라이프 홈페이지 기능 가이드북 v3.1
 
 **운영 가이드북:** https://interview1-chi.vercel.app/
 
 고객이 말한 표현으로 홈페이지 기능을 찾고, 이용 조건과 조치 순서를 확인해 안내합니다. 98개 기능·화면 예시와 별도로 ‘상담사 주요 QnA’에서 누구나 질문과 답변을 등록합니다. 통합 검색은 홈페이지 기능과 참여자 작성 QnA의 출처를 구분해 표시하며 질문·답변 본문도 검색합니다.
+
+v3.1은 공식 FAQ의 주제를 참고하고 홈페이지 소스·공식 안내로 검토한 **110개 샘플 질문·답변**을 공유 게시합니다. 기존 이용자 글과 추가 답변은 보존합니다. 작성자는 ‘가이드북 샘플’로 명시하고 메뉴·노출 조건·관련 URL·확인 기준일을 제공합니다. [원고와 업데이트 안내](docs/QNA-SAMPLES.md)를 참고하세요.
 
 ## 로컬 실행
 
@@ -28,6 +30,8 @@ npm run dev
 - 검색 엔진: `src/search.js`
 - 참여자 QnA 화면·검색: `src/qna.js`, `src/qna.css`, `src/qna-search.js`
 - 공유 저장 API·권한·충돌 처리: `api/qna.js`, `server/qna-*.cjs`
+- 검토한 샘플 원고·출처: `content/qna-samples.json`
+- Production 샘플 게시·개정 보호: `server/qna-publication.cjs`
 
 기존 기능의 ID는 공유 링크가 있으므로 유지합니다. JSON 편집기는 `content/feature.schema.json`으로 입력 항목을 안내합니다. 기능 내용이나 캡처를 변경하면 `availability.reviewedAt`과 `screen.captured`를 실제 확인일로 갱신합니다. 예시 화면은 `screen.kind: source` 및 예시 데이터임을 밝히는 캡션을 유지합니다.
 

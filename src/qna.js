@@ -3,6 +3,16 @@
  'use strict';
  const $=(query,base=document)=>base.querySelector(query),$$=(query,base=document)=>[...base.querySelectorAll(query)];
  const esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+ function bodyHTML(value){
+  const text=String(value??''),hosts=new Set(['www.skylife.co.kr','corp.skylife.co.kr','interview1-chi.vercel.app','speed.nia.or.kr']);
+  let output='',cursor=0;
+  for(const match of text.matchAll(/https:\/\/[^\s<>"']+/g)){
+   const original=match[0],candidate=original.replace(/[),.。]+$/g,'');let link;
+   try{const url=new URL(candidate);if(url.protocol==='https:'&&!url.username&&!url.password&&!url.port&&hosts.has(url.hostname))link=url.href;}catch{}
+   output+=esc(text.slice(cursor,match.index))+(link?`<a class="qna-reference-link" href="${esc(link)}" target="_blank" rel="noopener noreferrer">${esc(candidate)}</a>`+esc(original.slice(candidate.length)):esc(original));cursor=match.index+original.length;
+  }
+  return output+esc(text.slice(cursor));
+ }
  const categories=['요금·납부','가입·상품','이용·변경','장애·A/S','문의·고객지원','회원·계정','혜택·콘텐츠','사업자 지원','기타'];
  const ownerKeyName='skylife-qna:owner-key',ownedName='skylife-qna:owned';
  const questionID=value=>typeof value==='string'&&/^q-[a-z0-9-]{1,80}$/i.test(value);
@@ -11,6 +21,7 @@
  const state={initialized:false,open:false,query:'',global:false,questions:[],loading:true,configured:false,canWrite:false,loadError:'',view:'all',category:'',selectedId:null,pending:false,compose:null,editAnswer:null,confirm:null,author:'',storageWarning:''};
  let options={},inflight=null,noticeTimer,threadTrigger=null,composeTrigger=null;
  const visibility=new Map(),requestIds=new Map(),drafts=new Map(),searchCache=new Map();
+ let sampleWarning='';
  const dateFormat=new Intl.DateTimeFormat('ko-KR',{year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',timeZone:'Asia/Seoul'});
  let owned=readOwned();
  function readOwned(){try{const data=JSON.parse(localStorage.getItem(ownedName)||'{}');return {questions:Array.isArray(data.questions)?data.questions.filter(questionID):[],answers:Array.isArray(data.answers)?data.answers.filter(answerID):[]};}catch{return {questions:[],answers:[]};}}
@@ -55,7 +66,7 @@
   if(!state.configured)return state.loadError||'공유 저장소 연결을 준비하고 있습니다. 연결 후 누구나 질문과 답변을 함께 저장할 수 있습니다.';
   if(state.loadError)return state.loadError+' 최근 불러온 목록을 표시합니다. 새로고침을 다시 시도해주세요.';
   if(!state.canWrite)return '공유 질문·답변을 조회할 수 있습니다. 현재 질문과 답변 작성은 준비 중입니다.';
-  return state.storageWarning||'공유 저장소에 연결되었습니다. 질문과 답변은 모든 방문자에게 공개됩니다. 개인정보는 입력하지 마세요.';
+  return [state.storageWarning||'공유 저장소에 연결되었습니다. 질문과 답변은 모든 방문자에게 공개됩니다. 개인정보는 입력하지 마세요.',sampleWarning].filter(Boolean).join(' ');
  }
  function renderStatus(){
   const node=$('#qna-status');node.classList.toggle('is-pending',!state.loading&&(!state.configured||!state.canWrite));node.classList.toggle('is-error',!!state.loadError&&state.configured);node.textContent=statusText();
@@ -106,11 +117,11 @@
  }
  function answerHTML(q,a){
   if(state.editAnswer?.id===a.id){const draft=drafts.get('edit-answer:'+a.id)||{body:a.body,author:a.author==='익명 참여자'?'':a.author};return `<article class="qna-answer"><p class="qna-answer-author">내 답변 수정</p><form class="qna-form" data-qna-form="update-answer" data-qna-question-id="${esc(q.id)}" data-qna-answer-id="${esc(a.id)}"><label for="qna-edit-answer-body">답변 내용<textarea id="qna-edit-answer-body" name="body" maxlength="4000" required>${esc(draft.body)}</textarea><small>최대 4,000자</small></label>${authorField(draft.author,'qna-edit-answer-author')}${errorBox('qna-edit-answer-error')}<div class="qna-form-actions"><button type="button" class="secondary-button" data-qna-cancel-answer>취소</button><button type="submit" class="qna-primary" data-qna-write>수정 저장</button></div></form></article>`;}
-  return `<article class="qna-answer"><div class="qna-answer-meta"><span class="qna-answer-author">참여자 ${esc(a.author)} ${ownsAnswer(a.id)?'<span class="qna-mine-badge">내 답변</span>':''}</span><span>${timeHTML(a.createdAt)}${a.updatedAt&&a.updatedAt!==a.createdAt?' · 수정됨':''}</span></div><p class="qna-answer-text">${esc(a.body)}</p><div class="qna-answer-footer"><span>인증되지 않은 참여자 답변</span>${ownsAnswer(a.id)?`<div><button type="button" class="qna-link-button" data-qna-edit-answer="${esc(a.id)}">수정</button><button type="button" class="qna-link-button danger" data-qna-delete-answer="${esc(a.id)}">삭제</button></div>`:''}</div></article>`;
+  return `<article class="qna-answer"><div class="qna-answer-meta"><span class="qna-answer-author">참여자 ${esc(a.author)} ${ownsAnswer(a.id)?'<span class="qna-mine-badge">내 답변</span>':''}</span><span>${timeHTML(a.createdAt)}${a.updatedAt&&a.updatedAt!==a.createdAt?' · 수정됨':''}</span></div><p class="qna-answer-text">${bodyHTML(a.body)}</p><div class="qna-answer-footer"><span>인증되지 않은 참여자 답변</span>${ownsAnswer(a.id)?`<div><button type="button" class="qna-link-button" data-qna-edit-answer="${esc(a.id)}">수정</button><button type="button" class="qna-link-button danger" data-qna-delete-answer="${esc(a.id)}">삭제</button></div>`:''}</div></article>`;
  }
  function renderThread(){
   const q=question(state.selectedId);if(!q){$('#qna-thread-body').innerHTML=`<header class="qna-dialog-head"><button type="button" class="qna-close" data-qna-close-thread aria-label="질문 닫기">✕</button><span class="qna-source">참여자 작성</span><h2 id="qna-thread-title">질문을 불러오지 못했어요.</h2></header><div class="qna-thread-content"><p class="qna-form-note">${esc(state.loading?'공유 질문을 불러오고 있습니다.':state.loadError||'삭제되었거나 현재 목록에 없는 질문입니다.')}</p><button type="button" class="secondary-button" data-qna-refresh>최신 목록 불러오기</button></div>`;return;}
-  $('#qna-thread-body').innerHTML=`<header class="qna-dialog-head"><button type="button" class="qna-close" data-qna-close-thread aria-label="질문 닫기">✕</button><span class="qna-source">참여자 작성 · 공식 가이드 아님</span><h2 id="qna-thread-title">${esc(q.title)}</h2><div class="qna-thread-meta"><span>${esc(q.category)}</span><span>참여자 ${esc(q.author)}</span><span>작성 ${timeHTML(q.createdAt)}</span>${q.updatedAt&&q.updatedAt!==q.createdAt?`<span>수정 ${timeHTML(q.updatedAt)}</span>`:''}</div></header><div class="qna-thread-content"><p class="qna-thread-text">${esc(q.body)}</p>${tagsHTML(q.tags)}<div class="qna-thread-actions"><button type="button" class="qna-link-button" data-qna-share="${esc(q.id)}">질문 링크 복사</button>${ownsQuestion(q.id)?`<button type="button" class="qna-link-button" data-qna-edit-question="${esc(q.id)}" ${!canWrite()?'disabled':''}>내 질문 수정</button><button type="button" class="qna-link-button danger" data-qna-delete-question="${esc(q.id)}" ${!canWrite()||q.answers.length?'disabled':''} ${q.answers.length?'title="답변이 있는 질문은 삭제할 수 없습니다."':''}>삭제</button>`:''}</div>${ownsQuestion(q.id)&&q.answers.length?'<p class="qna-delete-help">다른 참여자의 답변을 보호하기 위해 답변이 있는 질문은 삭제할 수 없습니다.</p>':''}</div><section class="qna-answer-section"><h3>참여자 답변<span>${q.answers.length}</span></h3><div class="qna-answer-list">${q.answers.length?q.answers.map(a=>answerHTML(q,a)).join(''):'<p class="qna-form-note">아직 답변이 없습니다. 확인한 내용을 알고 있다면 첫 답변을 남겨주세요.</p>'}</div></section><section class="qna-write-section"><h3>함께 답변해요</h3><p class="qna-form-note">답변은 인증 없는 참여자 작성 내용입니다. 메뉴와 이용 조건을 확인한 내용만 공유해주세요.</p>${canWrite()?privacy+answerFormHTML(q):`<div class="qna-readonly-note">${esc(statusText())}</div>`}</section>`;
+  $('#qna-thread-body').innerHTML=`<header class="qna-dialog-head"><button type="button" class="qna-close" data-qna-close-thread aria-label="질문 닫기">✕</button><span class="qna-source">참여자 작성 · 공식 가이드 아님</span><h2 id="qna-thread-title">${esc(q.title)}</h2><div class="qna-thread-meta"><span>${esc(q.category)}</span><span>참여자 ${esc(q.author)}</span><span>작성 ${timeHTML(q.createdAt)}</span>${q.updatedAt&&q.updatedAt!==q.createdAt?`<span>수정 ${timeHTML(q.updatedAt)}</span>`:''}</div></header><div class="qna-thread-content"><p class="qna-thread-text">${bodyHTML(q.body)}</p>${tagsHTML(q.tags)}<div class="qna-thread-actions"><button type="button" class="qna-link-button" data-qna-share="${esc(q.id)}">질문 링크 복사</button>${ownsQuestion(q.id)?`<button type="button" class="qna-link-button" data-qna-edit-question="${esc(q.id)}" ${!canWrite()?'disabled':''}>내 질문 수정</button><button type="button" class="qna-link-button danger" data-qna-delete-question="${esc(q.id)}" ${!canWrite()||q.answers.length?'disabled':''} ${q.answers.length?'title="답변이 있는 질문은 삭제할 수 없습니다."':''}>삭제</button>`:''}</div>${ownsQuestion(q.id)&&q.answers.length?'<p class="qna-delete-help">다른 참여자의 답변을 보호하기 위해 답변이 있는 질문은 삭제할 수 없습니다.</p>':''}</div><section class="qna-answer-section"><h3>참여자 답변<span>${q.answers.length}</span></h3><div class="qna-answer-list">${q.answers.length?q.answers.map(a=>answerHTML(q,a)).join(''):'<p class="qna-form-note">아직 답변이 없습니다. 확인한 내용을 알고 있다면 첫 답변을 남겨주세요.</p>'}</div></section><section class="qna-write-section"><h3>함께 답변해요</h3><p class="qna-form-note">답변은 인증 없는 참여자 작성 내용입니다. 메뉴와 이용 조건을 확인한 내용만 공유해주세요.</p>${canWrite()?privacy+answerFormHTML(q):`<div class="qna-readonly-note">${esc(statusText())}</div>`}</section>`;
  }
  function openQuestion(id,opener){if(!questionID(id))return;open();if(opener)threadTrigger=opener;state.selectedId=id;state.editAnswer=null;renderThread();if(!$('#qna-thread-dialog').open)$('#qna-thread-dialog').showModal();$('#qna-thread-dialog').scrollTop=0;setHash(id);}
  function questionFields(q){return {title:q?.title||'',body:q?.body||'',category:q?.category||'기타',tags:q?.tags?.join(', ')||'',author:q?.author&&q.author!=='익명 참여자'?q.author:state.author};}
@@ -170,6 +181,7 @@
    try{
     if(location.protocol==='file:'){state.configured=false;state.canWrite=false;state.loadError='공유 질문·답변은 배포된 웹페이지에서 이용할 수 있습니다. 파일 안에 질문을 저장하지 않습니다.';return;}
     const response=await fetch('/api/qna',{credentials:'same-origin',cache:'no-store'});const data=await response.json();
+    sampleWarning=data.samplePublication?.status==='pending'?plain(data.samplePublication.message,800):'';
     if(data.configured===false){state.configured=false;state.canWrite=false;state.loadError=plain(data.error?.message,800)||'공유 저장소 연결을 준비하고 있습니다.';return;}
     if(!response.ok||data.configured!==true||!Array.isArray(data.questions))throw Error('공유 질문 목록을 불러오지 못했습니다.');
     state.configured=true;state.canWrite=data.canWrite===true;state.questions=data.questions.map(normalizeQuestion).filter(Boolean);searchCache.clear();if(announce)notice('공유 질문 목록을 새로 불러왔습니다.');

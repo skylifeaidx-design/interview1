@@ -1,6 +1,7 @@
 const net = require('node:net');
-const { QnaError, createQnaService } = require('./qna-service.cjs');
+const { QnaError } = require('./qna-service.cjs');
 const { createBlobStore } = require('./qna-blob-store.cjs');
+const { createPublishedQnaService } = require('./qna-publication.cjs');
 
 const BODY_BYTES = 32 * 1024;
 function origins(env) {
@@ -47,7 +48,7 @@ async function body(req, maximum) {
   catch { throw new QnaError(400, 'INVALID_JSON', '올바른 JSON 요청을 보내주세요.'); }
 }
 function createQnaHandler({ service, env = process.env, bodyBytes = BODY_BYTES } = {}) {
-  const shared = service || createQnaService({ store: createBlobStore({ env }) });
+  const shared = service || createPublishedQnaService({ store: createBlobStore({ env }), env });
   const allowed = origins(env);
   return async function qnaHandler(req, res) {
     res.setHeader('Content-Type', 'application/json; charset=utf-8');
